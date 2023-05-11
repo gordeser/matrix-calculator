@@ -35,3 +35,37 @@ Z = X * (Y + [[1, 0], [0, 1]])
 A = GEM Z
 PRINT A
 EXPORT memory.matx
+
+
+Specifikace
+
+Maticová kalkulačka obsahuje základní operace:
+    1. Sčítání s číslem / s maticí
+    2. Odečítání čísla / matice
+    3. Násobení skalárem / maticí
+    4. Sloučení matic zprava / zdola
+    5. Oříznutí matic zprava / zdola
+    6. Umocňování matic
+
+A také lineární operace:
+    1. Transpozice matice
+    2. Výpočet inverzní matice (pouze pro čtvercové)
+    3. Výpočet determinantu matice
+    4. Určení hodnosti matice
+    5. Provedení Gaussovy eliminační metody
+
+
+Pro efektivnější práce kalkulačka dokáže rozlišovat mezi dvěma typy matic:
+    1. Řídká matice (s převahou nulových prvků) - bude používat efektivnější datový typ
+    2. Hustá matice (s převahou nenulových prvků)
+
+
+Komunikace probíhá pomocí konzoly (CLI).
+
+Pro lepší komfort uživatele, bude komunikace mezi uživatelem a programem probíhat interaktivním způsobem.
+To znamená, že program nabídne uživateli příkazy, a uživatel si vybere ze toho seznamu.
+V případě chybného vstupu program vypíše chybu podle vstupu uživatele.
+
+Uživatel má dvě možnosti pro vkládání a vypisování dat:
+    1. Konzola
+    2. Textový soubor (pokud je ve výstupu zadán neexistující soubor, bude vytvořen; aby bylo možné soubor importovat, musí být správně formátován jako v ukázkách)
