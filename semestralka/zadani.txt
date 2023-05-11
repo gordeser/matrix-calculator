@@ -1,0 +1,37 @@
+Maticová kalkulačka
+
+Vaším úkolem je vytvořit kalkulačku pro práci s maticemi.
+
+
+Kalkulačka musí implementovat následující funkcionality:
+    1. Práce s maticemi libovolné velikosti
+    2. Základní operace: sčítání, odčítání, násobení a transpozice.
+    3. Sloučení matic (př. matice 3x3 sloučeno s 3x3 ⇒ matice 6x3) a oříznutí (př. matice 6x6 oříznuta na 3x3 v offsetu 0x0 ⇒ levá polovina matice 3x3).
+    4. Výpočet inverzní matice pro čtvercové matice.
+    5. Funkce pro výpočet determinantu, určení hodnosti a provedení Gaussovy eliminační metody.
+    6. Stav kalkulačky (tedy její proměnné) je možné uložit do souboru v textově čitelné formě. Stejně tak je potom možné tento stav ze souboru obnovit.
+    7. Uložení v rámci proměnných (a souboru) musí být paměťově efektivní. Při ukládání proměnné do paměti se musí určit typ dané matice. Rozlišujte alespoň řídké matice (obsahují především nulové hodnoty, př. jednotková matice) a husté matice (opak řídkých, př. hodnota prvku v matici je rovna jeho součtu jeho indexů) a podle toho určete efektivní reprezentaci.
+
+
+Dále aplikace musí zpracovávat výrazy dle jednoho z následujících principů:
+    1. Základní operace (alespoň sčítání, odčítání a násobení) musí jít vnořovat pomocí závorek (př. (Z = [[1, 0], [0, 1]] + X) * Y). Funkce a složitější operace mohou fungovat formou individuálních příkazů bez dalšího skládání (př. A = GAUSS X).
+    2. Pro zapisování výrazů využijte prefixový (nebo postfixový) zápis, mají tu výhodu, že nevyžadují závorky a snáze se zpracovávají. V tomto případě však veškeré operace a funkce musí jít zapsat v jednom výrazu (př. A = GAUSS MUL Y ADD [[1, 0], [0, 1]] X).
+
+
+Kde lze využít polymorfismus? (doporučené)
+    1. reprezentace matice: jednotková, řídká, hustá, …
+    2. operace: sčítání, odčítání, násobení, …
+    3. formáty exportu: textový, binární, …
+    4. uživatelské rozhraní: konzole, ncurses, SDL, OpenGL (různé varianty), …
+
+
+Ukázka běhu programu: (nezávazný příklad)
+
+IMPORT memory.matx
+X = DET [[1, 7], [3, 2]]
+SCAN Y
+// input from user …
+Z = X * (Y + [[1, 0], [0, 1]])
+A = GEM Z
+PRINT A
+EXPORT memory.matx
