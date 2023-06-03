@@ -2,7 +2,10 @@
 // Created by gordeser on 13.05.2023.
 //
 
+#include <vector>
+#include <math.h>
 #include "Matrix.h"
+#include "../Exception.h"
 
 Matrix::Matrix(std::size_t numRows, std::size_t numCols) : m_rows(numRows), m_cols(numCols) {}
 
@@ -14,7 +17,8 @@ std::size_t Matrix::numCols() const {
     return m_cols;
 }
 
-double Matrix::determinant(std::vector<std::vector<double>> vector, size_t i) const {
+std::size_t Matrix::rank() const {
+double Matrix::determinant() const {
     if (numRows() != numCols())
         throw Exception("error");
 
@@ -49,7 +53,7 @@ double Matrix::countDeterminant(std::vector<std::vector<double>> matrix, size_t 
             }
             subi++;
         }
-        result += pow(-1, x) * matrix[0][x] * determinant(submatrix, n - 1);
+        result += pow(-1, x) * matrix[0][x] * countDeterminant(submatrix, n - 1);
     }
 
     return result;
