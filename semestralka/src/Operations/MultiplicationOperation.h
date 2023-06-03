@@ -9,6 +9,7 @@
 #include "BinaryOperation.h"
 
 class MultiplicationOperation : public BinaryOperation {
+public:
     std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a, const std::shared_ptr<Matrix> &b) override;
     std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a, double b) override;
 };
