@@ -4,8 +4,8 @@
 
 #include <vector>
 #include <math.h>
-#include "Matrix.h"
 #include "../Exception.h"
+#include "../Operations/GaussEliminationOperation.h"
 
 Matrix::Matrix(std::size_t numRows, std::size_t numCols) : m_rows(numRows), m_cols(numCols) {}
 
