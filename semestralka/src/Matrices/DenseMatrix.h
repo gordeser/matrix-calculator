@@ -14,7 +14,6 @@ class DenseMatrix : public Matrix {
 public:
     DenseMatrix(std::size_t numRows, std::size_t numCols, std::vector<std::vector <double>> data);
     double getVal(std::size_t row, std::size_t col) const override;
-    void setVal(std::size_t row, std::size_t col, double val) override;
     std::shared_ptr<Matrix> clone() const override;
     void print() const override;
     void printToFile() const override;

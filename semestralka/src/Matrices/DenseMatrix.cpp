@@ -10,8 +10,8 @@ double DenseMatrix::getVal(std::size_t row, std::size_t col) const {
     return m_data[row][col];
 }
 
-void DenseMatrix::setVal(std::size_t row, std::size_t col, double val) {
-    m_data[row][col] = val;
+std::shared_ptr<Matrix> DenseMatrix::clone() const {
+    return std::make_shared<DenseMatrix>(*this);
 }
 
 
