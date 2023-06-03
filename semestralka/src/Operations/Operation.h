@@ -10,7 +10,7 @@
 class Operation {
 public:
     virtual ~Operation() {}
-    virtual std::shared_ptr<Matrix> execute(const std::shared_ptr<Matrix> &a) = 0;
+    virtual std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a) = 0;
 };
 
 #endif //PA2_OPERATION_H
