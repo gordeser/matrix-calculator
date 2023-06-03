@@ -20,4 +20,8 @@ std::size_t IdentityMatrix::rank() const {
 double IdentityMatrix::determinant() const {
     return 1;
 }
+
+std::shared_ptr<Matrix> IdentityMatrix::clone() const {
+    return std::make_shared<IdentityMatrix>(*this);
+}
 
