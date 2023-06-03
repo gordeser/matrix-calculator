@@ -12,6 +12,8 @@ class ConsoleUI : public UserInterface {
 public:
     void showText(const std::string &text) override;
     std::string getInput() override;
+    void showGreeting() override;
+    void showFarewall() override;
 };
 
 #endif //PA2_CONSOLE_H
