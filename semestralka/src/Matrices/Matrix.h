@@ -7,6 +7,7 @@
 #include <memory>
 
 class Matrix {
+    double countDeterminant(std::vector <std::vector <double>> matrix, size_t n) const;
 protected:
     std::size_t m_rows;
     std::size_t m_cols;
@@ -15,6 +16,7 @@ public:
     virtual ~Matrix() {}
     std::size_t numRows() const;
     std::size_t numCols() const;
+    virtual double determinant(std::vector<std::vector<double>> vector, size_t i) const;
     virtual double getVal(std::size_t row, std::size_t col) const = 0;
     virtual void setVal(std::size_t row, std::size_t col, double val) = 0;
     virtual std::size_t rank() const = 0;
