@@ -10,3 +10,7 @@ void ConsoleUI::showGreeting() {
     std::cout << "Available commands you can get with input HELP" << std::endl;
     std::cout << "Your input: ";
 }
+
+void ConsoleUI::showFarewall() {
+    std::cout << "Goodbye!" << std::endl;
+}
