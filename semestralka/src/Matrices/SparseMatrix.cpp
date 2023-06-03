@@ -10,4 +10,8 @@ double SparseMatrix::getVal(std::size_t row, std::size_t col) const {
     // todo handle exception
     return m_data.at(std::make_pair(row, col));
 }
+
+std::shared_ptr<Matrix> SparseMatrix::clone() const {
+    return std::make_shared<SparseMatrix>(*this);
+}
 

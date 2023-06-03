@@ -9,13 +9,10 @@
 #include <vector>
 
 class SparseMatrix : public Matrix {
-    std::vector <std::vector <double>> m_data;
+    std::map <std::pair<std::size_t, std::size_t>, double> m_data;
 public:
     SparseMatrix(std::size_t numRows, std::size_t numCols);
     double getVal(std::size_t row, std::size_t col) const override;
-    void setVal(std::size_t row, std::size_t col, double val) override;
-    std::size_t rank() const override;
-    double determinant() const override;
     std::shared_ptr<Matrix> clone() const override;
     void print() const override;
     void printToFile() const override;
