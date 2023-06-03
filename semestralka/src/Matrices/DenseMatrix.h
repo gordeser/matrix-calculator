@@ -7,15 +7,14 @@
 
 #include "Matrix.h"
 #include <map>
+#include <vector>
 
 class DenseMatrix : public Matrix {
-    std::map <std::pair<std::size_t, std::size_t>, double> m_data;
+    std::vector<std::vector <double>> m_data;
 public:
-    DenseMatrix(std::size_t numRows, std::size_t numCols);
+    DenseMatrix(std::size_t numRows, std::size_t numCols, std::vector<std::vector <double>> data);
     double getVal(std::size_t row, std::size_t col) const override;
     void setVal(std::size_t row, std::size_t col, double val) override;
-    std::size_t rank() const override;
-    double determinant() const override;
     std::shared_ptr<Matrix> clone() const override;
     void print() const override;
     void printToFile() const override;
