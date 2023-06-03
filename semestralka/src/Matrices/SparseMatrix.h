@@ -7,6 +7,7 @@
 
 #include "Matrix.h"
 #include <vector>
+#include <map>
 
 class SparseMatrix : public Matrix {
     std::map <std::pair<std::size_t, std::size_t>, double> m_data;
