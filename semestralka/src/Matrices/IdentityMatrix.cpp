@@ -16,4 +16,8 @@ double IdentityMatrix::getVal(std::size_t row, std::size_t col) const {
 std::size_t IdentityMatrix::rank() const {
     return m_rows;
 }
+
+double IdentityMatrix::determinant() const {
+    return 1;
+}
 
