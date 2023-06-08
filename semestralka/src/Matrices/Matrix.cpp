@@ -4,7 +4,7 @@
 
 #include <vector>
 #include <math.h>
-#include "../Exception.h"
+#include "../MatrixException.h"
 #include "../Operations/GaussEliminationOperation.h"
 #include "Matrix.h"
 
@@ -36,22 +36,18 @@ std::size_t Matrix::rank() const {
 
 double Matrix::determinant() const {
     if (numRows() != numCols())
-        throw Exception("error");
+        throw MatrixException("Determinant could be counted only for square matrix\n");
 
     std::vector <std::vector <double>> matrix(numRows(), std::vector<double> (numCols()));
-    for (size_t i = 0; i < numRows(); ++i) {
-        for (size_t j = 0; j < numCols(); ++j) {
+    for (size_t i = 0; i < numRows(); ++i)
+        for (size_t j = 0; j < numCols(); ++j)
             matrix[i][j] = getVal(i, j);
-        }
-    }
+
     return countDeterminant(matrix, numRows());
 }
 
 // taken from https://www.tutorialspoint.com/cplusplus-program-to-compute-determinant-of-a-matrix
 double Matrix::countDeterminant(std::vector<std::vector<double>> matrix, size_t size) const {
-    if (m_rows != m_cols)
-        throw Exception("error");
-
     if (size == 1) return matrix[0][0];
     if (size == 2) return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
 
