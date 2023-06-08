@@ -8,19 +8,15 @@
 #include <map>
 #include <string>
 #include "Matrices/Matrix.h"
-#include <memory>
 
 class MatrixStorage {
     std::map <std::string, std::shared_ptr<Matrix>> m_data;
 public:
     void addMatrix(const std::string &name, const std::shared_ptr<Matrix> &matrix);
-    void importMatrix();
     void removeMatrix(const std::string &name);
-    void removeAll();
-    void saveMatrix(const std::string &name);
+    void removeAllMatrices();
     std::shared_ptr<Matrix> getMatrix(const std::string &name) const;
-    void saveAll();
-    void printAll();
+    std::vector <std::string> getAllMatrices();
 };
 
 #endif //PA2_MATRIXSTORAGE_H
