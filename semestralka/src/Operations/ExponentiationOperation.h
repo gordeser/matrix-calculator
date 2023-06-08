@@ -5,11 +5,16 @@
 #ifndef PA2_EXPONENTIATIONOPERATION_H
 #define PA2_EXPONENTIATIONOPERATION_H
 
-#include <vector>
 #include "BinaryOperation.h"
+#include "../Utilities.h"
 
-class ExponentiationOperation : public BinaryOperation {
-    std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a, int b) override;
+class ExponentiationOperation : public Operation {
+    Utilities m_utilities;
+protected:
+    int m_rhs;
+public:
+    ExponentiationOperation(const std::shared_ptr<Matrix> &lhs, int rhs);
+    std::vector <std::vector <double>> execute() override;
 };
 
 #endif //PA2_EXPONENTIATIONOPERATION_H
