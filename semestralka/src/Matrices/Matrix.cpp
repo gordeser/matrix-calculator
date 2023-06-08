@@ -48,29 +48,31 @@ double Matrix::determinant() const {
 }
 
 // taken from https://www.tutorialspoint.com/cplusplus-program-to-compute-determinant-of-a-matrix
-double Matrix::countDeterminant(std::vector<std::vector<double>> matrix, size_t n) const {
+double Matrix::countDeterminant(std::vector<std::vector<double>> matrix, size_t size) const {
+    if (m_rows != m_cols)
+        throw Exception("error");
 
-    if (n == 1) return matrix[0][0];
-
-    if (n == 2) return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
+    if (size == 1) return matrix[0][0];
+    if (size == 2) return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
 
     double result = 0;
-    std::vector <std::vector <double>> submatrix(n, std::vector <double> (n));
+    std::vector <std::vector <double>> submatrix(size, std::vector <double> (size));
 
-    for (size_t x = 0; x < n; ++x) {
+    for (size_t x = 0; x < size; ++x) {
         size_t subi = 0;
-        for (size_t i = 1; i < n; ++i) {
+        for (size_t i = 1; i < size; ++i) {
             size_t subj = 0;
-            for (size_t j = 0; j < n; ++j) {
+            for (size_t j = 0; j < size; ++j) {
                 if (j == x) continue;
-
                 submatrix[subi][subj] = matrix[i][j];
                 subj++;
             }
             subi++;
         }
-        result += pow(-1, x) * matrix[0][x] * countDeterminant(submatrix, n - 1);
+        result += pow(-1, x) * matrix[0][x] * countDeterminant(submatrix, size - 1);
     }
+    return result;
+}
 
 size_t Matrix::countMaxDigits(size_t column) const {
     size_t maxDigits = 0;
