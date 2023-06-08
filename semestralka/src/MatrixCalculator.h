@@ -6,7 +6,7 @@
 #define PA2_MATRIXCALCULATOR_H
 
 #include "Parser.h"
-#include "UserInterfaces/Console.h"
+#include "UserInterfaces/ConsoleUI.h"
 
 class MatrixCalculator {
     Parser m_parser;

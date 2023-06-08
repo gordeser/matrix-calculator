@@ -4,7 +4,7 @@
 
 #include <vector>
 #include <math.h>
-#include "../MatrixException.h"
+#include "../Exceptions/MatrixException.h"
 #include "../Operations/GaussEliminationOperation.h"
 #include "Matrix.h"
 
