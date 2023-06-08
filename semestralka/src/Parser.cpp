@@ -17,6 +17,34 @@
 #include "Operations/TrimmingOperation.h"
 #include "Exceptions/ParserException.h"
 
+void Parser::scanElements(const std::string &name) {
+    m_console.showText("Input size of matrix: ");
+    std::string input = m_utilities.deleteSpaces(m_console.getInput());
+    size_t numRows, numCols;
+    char c;
+    std::stringstream ss(input);
+    if (!(ss >> numRows >> numCols))
+        throw ParserException("There should be only number of rows and number of columns");
+
+    if (ss >> c)
+        throw ParserException("There should be only number of rows and number of columns");
+
+    std::vector <std::vector <double>> elements(numRows, std::vector<double> (numCols, 0));
+
+    for (size_t i = 0; i < numRows; ++i) {
+        m_console.showText("Input " + std::to_string(i+1) + " row of matrix: ");
+
+        auto row = m_utilities.tokeniseInput(m_console.getInput());
+        if (row.size() != numCols)
+            throw ParserException("One row must have " + std::to_string(numCols) + " elements");
+
+        for (size_t j = 0; j < numCols; ++j)
+            elements[i][j] = std::stod(row[j]);
+    }
+    auto matrix = m_utilities.createMatrix(elements);
+    m_storage.addMatrix(name, matrix);
+}
+
 void Parser::printDet(const std::vector<std::string> &elements) {
     for (const auto &elem : elements) {
         double det = m_storage.getMatrix(elem)->determinant();
