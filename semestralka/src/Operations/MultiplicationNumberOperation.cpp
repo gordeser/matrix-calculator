@@ -11,7 +11,7 @@ std::vector<std::vector<double>> MultiplicationNumberOperation::execute() {
     for (size_t i = 0; i < m_lhs->numRows(); ++i)
         for (size_t j = 0; j < m_lhs->numCols(); ++j)
             result[i][j] = m_lhs->getVal(i, j) * m_rhs;
-    
+
     return result;
 }
 
