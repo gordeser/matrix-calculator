@@ -2,17 +2,14 @@
 // Created by gordeser on 14.05.2023.
 //
 
-#include <stdexcept>
 #include "SparseMatrix.h"
 
-SparseMatrix::SparseMatrix(std::size_t numRows, std::size_t numCols) : Matrix(numRows, numCols) {}
+SparseMatrix::SparseMatrix(size_t numRows, size_t numCols, std::map <std::pair<size_t, size_t>, double> data) : Matrix(numRows, numCols), m_data(data) {}
 
-double SparseMatrix::getVal(std::size_t row, std::size_t col) const {
-    try {
+double SparseMatrix::getVal(size_t row, size_t col) const {
+    if (m_data.find(std::make_pair(row, col)) != m_data.end())
         return m_data.at(std::make_pair(row, col));
-    } catch(std::out_of_range &e) {
-        return 0;
-    }
+    return 0;
 }
 
 std::shared_ptr<Matrix> SparseMatrix::clone() const {
