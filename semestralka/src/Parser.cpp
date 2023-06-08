@@ -18,6 +18,11 @@
 #include "Exceptions/ParserException.h"
 
 
+void Parser::exportAllElements(const std::string &filename) {
+    auto allNames = m_storage.getAllMatrices();
+    m_textexport.exportData(filename, allNames, m_storage);
+}
+
 void Parser::deleteElements(const std::vector<std::string> &elements) {
     for (const auto &elem : elements)
         m_storage.removeMatrix(elem);
