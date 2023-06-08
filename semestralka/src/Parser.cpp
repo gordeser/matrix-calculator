@@ -17,6 +17,11 @@
 #include "Operations/TrimmingOperation.h"
 #include "Exceptions/ParserException.h"
 
+
+void Parser::deleteAllElements() {
+    m_storage.removeAllMatrices();
+}
+
 void Parser::importElements(const std::vector<std::string> &elements) {
     m_textexport.importData(elements, m_storage);
 }
