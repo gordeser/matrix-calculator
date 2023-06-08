@@ -47,11 +47,11 @@ Specifikace
 Úkolem je vytvořit kalkulačku pro práci s maticemi.
 
 Maticová kalkulačka obsahuje binární operace:
-    1. Sčítání s číslem / s maticí (X = ADD A a / X = ADD A B)
-    2. Odečítání čísla / matice (X = SUB A a / X = SUB A B)
-    3. Násobení skalárem / maticí (X = MUL A a / X = MUL A B)
+    1. Sčítání matice (X = ADD A B)
+    2. Odečítání matice (X = SUB A B)
+    3. Násobení skalárem / maticí (X = MUL a A / X = MUL A B)
     4. Sloučení matic zprava / zdola (X = JOINRIGHT A B / X = JOINDOWN A B)
-    5. Oříznutí matic (X = TRIM A (row, col))
+    5. Oříznutí matic (X = TRIM A row col off_x off_y)
     6. Umocňování matic (X = EXP A a)
 
 A také unární operace:
@@ -67,11 +67,10 @@ Pro efektivnější práce kalkulačka dokáže rozlišovat mezi dvěma typy mat
     3. Jednotková matice (jedničky na hlavní diagonále)
 
 Kromě toho bude uživatel moci pracovat s obsahem matic:
-    1. Načtení matice (+ načtení matic ze souboru) (SCAN X / IMPORT X filename)
+    1. Načtení matice (+ načtení matic ze souboru) (SCAN X / IMPORT filename)
     2. Vymazání matice (+ vymazání všech matic) (DEL X / DELALL)
     3. Uložení matic do souboru (+ uložení všech matic do souboru) (EXPORT X filename / EXPORTALL filename)
     4. Zobrazení matic v konzoli (+ zobrazení všech matic v konzoli) (PRINT X / PRINTALL)
-    5. Změna obsahu matic (změna matic ze souboru) (X = A / IMPORT X filename)
 
 Práce se soubory:
     1. Pokud zadaný na výstup soubor neexistuje, bude vytvořen.
@@ -82,9 +81,9 @@ Práce se soubory:
     6. Pro import matici, soubor musí být v adresáři "import", který je ve stejném adresáři jako program.
 
 Komunikace probíhá pomocí konzoly (CLI).
-Funguje to tak, že uživatel zadá příkaz nebo několik příkazů na jednom řádku (např. A = GEM MUL Y ADD [[1, 0], [0, 1]] X)
+Funguje to tak, že uživatel zadá příkaz nebo několik příkazů na jednom řádku (např. A = GEM MUL Y ADD Z X)
 Pak třída Parser ty příkazy zpracuje do nějakého pole příkazů. V případě chyby program zpracování výrazu ukončí a uživateli zobrazí chybové hlášení se stručným popisem.
-Uživatel může program ukončit příkazem EXIT.
+Uživatel může program ukončit příkazem EXIT nebo QUIT.
 Uživatel může také použít příkaz HELP, který vypíše všechny možné příkazy.
 
 Konfigurační třída Commands obsahuje všechny možné příkazy.
@@ -100,7 +99,7 @@ Třída Matrix používá virtuální metody:
     4. determinant - pro výpočet determinantu matice
     5. clone - hluboká kopie matice
     6. print - výpis matice
-    7. exportToFile - export matice do souboru
+    7. printToFile - vypis matice ve formátu pro uložení do souboru
 
 
 Také polymorfismus je použit u abstraktní třídy Operation, od které se dědí BinaryOperation a všechny unární operace (např. Transpozice, Inverze atd.)
@@ -110,11 +109,13 @@ Třída Operation používá virtuální metodu execute (provedení nějaké ope
 
 Kromě toho polymorfismus je použit u abstraktní třídy Export, která se používá pro exportní formáty (textový, binární atd.).
 Prozatím bude export implementován pouze jako textový soubor - zděděná třída TextExport (v budoucnu je možné rozšířit).
-Třída Export používá virtuální metodu exportData pro výstup dat v požadovaném formátu.
+Třída Export používá virtuální metody:
+    1. exportData pro výstup dat v požadovaném formátu.
+    2. importData pro načtení dat ze souboru
 
 
 Nakonec, polymorfismus je použit u abstraktní třídy UserInterface, která se používá pro různá uživatelská rozhraní.
-Prozatím uživatelské rozhraní bude implementováno pouze v konzoli - zděděná třída Console.
+Prozatím uživatelské rozhraní bude implementováno pouze v konzoli - zděděná třída ConsoleUI.
 Třída UserInterface používá virtuální metody:
     1. showText - zobrazení textu na obrazovce
     2. getInput - načtení vstupu
