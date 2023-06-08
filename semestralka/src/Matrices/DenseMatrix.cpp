@@ -28,8 +28,14 @@ std::string DenseMatrix::print(const std::string &matrixName) const {
     return result.str();
 }
 
-std::shared_ptr<Matrix> DenseMatrix::clone() const {
-    return std::make_shared<DenseMatrix>(*this);
+std::string DenseMatrix::printToFile(const std::string &matrixName) const {
+    std::ostringstream result;
+    result << matrixName + " D ";
+    result << m_rows << " " << m_cols;
+    for (size_t i = 0; i < m_rows; ++i)
+        for (size_t j = 0; j < m_cols; ++j)
+            result << " " << m_data[i][j];
+    return result.str();
 }
 
 
