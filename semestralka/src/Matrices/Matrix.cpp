@@ -72,7 +72,15 @@ double Matrix::countDeterminant(std::vector<std::vector<double>> matrix, size_t 
         result += pow(-1, x) * matrix[0][x] * countDeterminant(submatrix, n - 1);
     }
 
-    return result;
+size_t Matrix::countMaxDigits(size_t column) const {
+    size_t maxDigits = 0;
+    auto matrix = clone();
+    for (size_t i = 0; i < m_rows; ++i) {
+        std::ostringstream ss;
+        ss << getVal(i, column);
+        maxDigits = std::max(maxDigits, ss.str().length());
+    }
+    return maxDigits;
 }
 
 
