@@ -8,7 +8,9 @@
 #include "BinaryOperation.h"
 
 class JoiningRightOperation : public BinaryOperation {
-    std::shared_ptr<Matrix> execute(const std::shared_ptr<Matrix> &a, const std::shared_ptr<Matrix> &b) override;
+public:
+    JoiningRightOperation(const std::shared_ptr <Matrix> &lhs, const std::shared_ptr <Matrix> &rhs);
+    std::vector <std::vector <double>> execute() override;
 };
 
 #endif //PA2_JOININGRIGHTOPERATION_H
