@@ -17,6 +17,11 @@
 #include "Operations/TrimmingOperation.h"
 #include "Exceptions/ParserException.h"
 
+void Parser::printElements(const std::vector<std::string> &elements) {
+    for (const auto &elem : elements)
+        m_console.showText(m_storage.getMatrix(elem)->print(elem));
+}
+
 void Parser::printAllElements() {
     auto allNames = m_storage.getAllMatrices();
     for (const auto &name : allNames) {
