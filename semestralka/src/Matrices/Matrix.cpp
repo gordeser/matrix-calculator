@@ -6,6 +6,7 @@
 #include <math.h>
 #include "../Exception.h"
 #include "../Operations/GaussEliminationOperation.h"
+#include "Matrix.h"
 
 Matrix::Matrix(std::size_t numRows, std::size_t numCols) : m_rows(numRows), m_cols(numCols) {}
 
@@ -18,6 +19,21 @@ std::size_t Matrix::numCols() const {
 }
 
 std::size_t Matrix::rank() const {
+    auto gemmedMatrix = std::make_shared<GaussEliminationOperation>(clone())->execute();
+    size_t rank = 0;
+
+    // rank = count of non-zero rows
+    for (size_t i = 0; i < m_rows; ++i) {
+        bool isZero = true;
+        for (size_t j = 0; j < m_cols; ++j)
+            if (gemmedMatrix[i][j] != 0)
+                isZero = false;
+        if (!isZero)
+            rank++;
+    }
+    return rank;
+}
+
 double Matrix::determinant() const {
     if (numRows() != numCols())
         throw Exception("error");
