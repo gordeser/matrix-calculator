@@ -8,7 +8,7 @@
 
 
 void TextExport::exportData(const std::string &filename, const std::vector<std::string> &names, const MatrixStorage &storage) {
-    std::ofstream outputFile(filename);
+    std::ofstream outputFile("export/" + filename);
     if (!outputFile.is_open())
         throw ExporterException("Cannot open the file\n");
 
@@ -26,7 +26,7 @@ void TextExport::exportData(const std::string &filename, const std::vector<std::
 
 void TextExport::importData(const std::vector<std::string> &filenames, MatrixStorage &storage) {
     for (const auto &filename : filenames) {
-        std::ifstream inputFile(filename);
+        std::ifstream inputFile("export/" + filename);
         if (!inputFile.is_open())
             throw ExporterException("Cannot open the file " + filename + "\n");
 
