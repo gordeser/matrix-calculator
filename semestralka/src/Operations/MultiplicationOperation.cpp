@@ -18,7 +18,7 @@ std::vector <std::vector <double>> MultiplicationOperation::execute() {
             double sum = 0;
             for (size_t k = 0; k < m_lhs->numCols(); ++k)
                 sum += m_lhs->getVal(i, k) * m_rhs->getVal(k, j);
-            
+
             result[i][j] = sum;
         }
     }
