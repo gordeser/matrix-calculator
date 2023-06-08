@@ -40,4 +40,7 @@ void MatrixCalculator::showGreeting() {
     m_console.showText("Hello!\n");
     m_console.showText("Available commands you can get using \"help\"\n");
 }
-
+
+void MatrixCalculator::showFarewall() {
+    m_console.showText("Goodbye!\n");
+}
