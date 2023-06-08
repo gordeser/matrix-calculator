@@ -10,10 +10,8 @@
 class UserInterface {
 public:
     virtual ~UserInterface() {}
-    virtual void showText(const std::string &text) = 0;
+    virtual void showText(const std::string &text) const = 0;
     virtual std::string getInput() = 0;
-    virtual void showGreeting() = 0;
-    virtual void showFarewall() = 0;
 };
 
 #endif //PA2_USERINTERFACE_H
