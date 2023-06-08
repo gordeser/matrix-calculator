@@ -18,4 +18,10 @@ void MatrixStorage::removeMatrix(const std::string &name) {
 void MatrixStorage::removeAllMatrices() {
     m_data.clear();
 }
+
+std::shared_ptr<Matrix> MatrixStorage::getMatrix(const std::string &name) const {
+    if (m_data.find(name) == m_data.end())
+        throw StorageException("There is no matrix with name " + name + "\n");
+    return m_data.at(name);
+}
 
