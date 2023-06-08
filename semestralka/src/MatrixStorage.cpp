@@ -14,4 +14,8 @@ void MatrixStorage::removeMatrix(const std::string &name) {
         throw StorageException("There is no matrix with name " + name + "\n");
     m_data.erase(name);
 }
+
+void MatrixStorage::removeAllMatrices() {
+    m_data.clear();
+}
 
