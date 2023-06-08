@@ -8,11 +8,12 @@
 #include "Operation.h"
 
 class BinaryOperation : public Operation {
+protected:
+    std::shared_ptr <Matrix> m_rhs;
 public:
-    virtual std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a, const std::shared_ptr<Matrix> &b) = 0;
-    virtual std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a, double b) = 0;
-    virtual std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a, int b) = 0;
-    virtual std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a, std::pair<std::size_t, std::size_t> &b) = 0;
+    BinaryOperation(std::shared_ptr <Matrix> lhs, std::shared_ptr <Matrix> rhs);
+    virtual std::vector <std::vector <double>> execute() = 0;
 };
+
 
 #endif //PA2_BINARYOPERATION_H
