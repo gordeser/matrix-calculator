@@ -9,9 +9,9 @@
 
 class IdentityMatrix : public Matrix {
 public:
-    IdentityMatrix(std::size_t numRows, std::size_t numCols);
-    double getVal(std::size_t row, std::size_t col) const override;
-    std::size_t rank() const override;
+    IdentityMatrix(size_t numRows, size_t numCols);
+    double getVal(size_t row, size_t col) const override;
+    size_t rank() const override;
     double determinant() const override;
     std::shared_ptr<Matrix> clone() const override;
     std::string print(const std::string &matrixName) const override;

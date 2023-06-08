@@ -4,9 +4,9 @@
 
 #include "IdentityMatrix.h"
 
-IdentityMatrix::IdentityMatrix(std::size_t numRows, std::size_t numCols) : Matrix(numRows, numCols) {}
+IdentityMatrix::IdentityMatrix(size_t numRows, size_t numCols) : Matrix(numRows, numCols) {}
 
-double IdentityMatrix::getVal(std::size_t row, std::size_t col) const {
+double IdentityMatrix::getVal(size_t row, size_t col) const {
     return (row == col) ? 1 : 0;
 }
 

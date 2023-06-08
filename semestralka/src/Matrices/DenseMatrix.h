@@ -10,8 +10,8 @@
 class DenseMatrix : public Matrix {
     std::vector<std::vector <double>> m_data;
 public:
-    DenseMatrix(std::size_t numRows, std::size_t numCols, std::vector<std::vector <double>> data);
-    double getVal(std::size_t row, std::size_t col) const override;
+    DenseMatrix(size_t numRows, size_t numCols, std::vector<std::vector <double>> data);
+    double getVal(size_t row, size_t col) const override;
     std::shared_ptr<Matrix> clone() const override;
     std::string print(const std::string &matrixName) const override;
     std::string printToFile(const std::string &matrixName) const override;
