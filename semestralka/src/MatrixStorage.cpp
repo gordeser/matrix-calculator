@@ -24,4 +24,14 @@ std::shared_ptr<Matrix> MatrixStorage::getMatrix(const std::string &name) const 
         throw StorageException("There is no matrix with name " + name + "\n");
     return m_data.at(name);
 }
-
+
+std::vector <std::string> MatrixStorage::getAllMatrices() {
+    std::vector <std::string> names;
+
+    if (m_data.size() == 0)
+        throw StorageException("There are no matrices in database\n");
+
+    for (const auto &matrix : m_data)
+        names.push_back(matrix.first);
+    return names;
+}
