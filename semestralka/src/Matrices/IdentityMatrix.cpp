@@ -21,4 +21,19 @@ double IdentityMatrix::determinant() const {
 std::shared_ptr<Matrix> IdentityMatrix::clone() const {
     return std::make_shared<IdentityMatrix>(*this);
 }
+
+std::string IdentityMatrix::print(const std::string &matrixName) const {
+    std::ostringstream result;
+    result << (matrixName != "" ? "[" + matrixName + "] " : "");
+    result << "Identity Matrix (" << m_rows << ":" << m_cols << ")\n";
+    for (size_t i = 0; i < m_rows; ++i) {
+        result << "| ";
+        for (size_t j = 0; j < m_cols; ++j) {
+            if (i == j) result << "1 ";
+            else result << "0 ";
+        }
+        result << "|\n";
+    }
+    return result.str();
+}
 
