@@ -368,6 +368,44 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
     return nullptr;
 }
 
+void Parser::printHelp() {
+    m_console.showText("\nAll matrices and commands names are case-insensitive\n");
+    m_console.showText("Matrix names have to contain ONLY alphabetic characters and numbers\n");
+    m_console.showText("Matrix names cannot be the same as matrix operations' names\n\n");
+
+    m_console.showText("- SCAN matrixName\n");
+    m_console.showText("Then input count of rows and columns\n");
+    m_console.showText("Then input matrix values by rows\n\n");
+
+    m_console.showText("- IMPORT filename - Import ALL matrices from filename\n\n");
+
+    m_console.showText("- DEL A - Delete matrix with name A\n");
+    m_console.showText("- DELALL - Delete ALL matrices\n\n");
+
+    m_console.showText("- EXPORT filename <matrix1, matrix2, ..., matrix_n> - Export matrices to the filename\n");
+    m_console.showText("- EXPORTALL filename - Export ALL matrices to the filename\n\n");
+
+    m_console.showText("- PRINT A - Display A matrix values in the console\n");
+    m_console.showText("- PRINTALL - Display ALL matrices' values in the console\n\n");
+
+    m_console.showText("- HELP - Print this message\n");
+    m_console.showText("- QUIT or EXIT - Terminate the program\n\n");
+
+    m_console.showText("Operations:\n");
+    m_console.showText("- ADD A B - Add the values of matrix B to the matrix A\n");
+    m_console.showText("- SUB A B - Subtract the values of matrix B from matrix A\n");
+    m_console.showText("- MUL a A - Multiply the values of matrix A by a number a\n");
+    m_console.showText("- MUL A B - Multiply matrix A by matrix B\n");
+    m_console.showText("- JOINRIGHT A B - Join matrix B to the matrix A as columns\n");
+    m_console.showText("- JOINDOWN A B - Join matrix B to the matrix A as rows\n");
+    m_console.showText("- TRIM A newNumRow newNumCol offsetRow offsetCol - Trim A matrix to newNumRow and newNumCol with offsets\n");
+    m_console.showText("- EXP A a - Increase matrix A to the power of a\n");
+    m_console.showText("- TRANS A - Transpose matrix A\n");
+    m_console.showText("- INV A - Inverse matrix A\n");
+    m_console.showText("- DET A - Count determinant of matrix A\n");
+    m_console.showText("- RANK A - Count rank of matrix A\n");
+    m_console.showText("- GEM A - Reduce the matrix A to reduced row echelon form\n");
+}
 
 void Parser::printElements(const std::vector<std::string> &elements) {
     for (const auto &elem : elements)
