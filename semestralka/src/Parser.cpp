@@ -449,10 +449,10 @@ void Parser::scanElements(const std::string &name) {
     char c;
     std::stringstream ss(input);
     if (!(ss >> numRows >> numCols))
-        throw ParserException("There should be only number of rows and number of columns");
+        throw ParserException("There should be only number of rows and number of columns\n");
 
     if (ss >> c)
-        throw ParserException("There should be only number of rows and number of columns");
+        throw ParserException("There should be only number of rows and number of columns\n");
 
     std::vector <std::vector <double>> elements(numRows, std::vector<double> (numCols, 0));
 
@@ -461,7 +461,7 @@ void Parser::scanElements(const std::string &name) {
 
         auto row = m_utilities.tokeniseInput(m_console.getInput());
         if (row.size() != numCols)
-            throw ParserException("One row must have " + std::to_string(numCols) + " elements");
+            throw ParserException("One row must have " + std::to_string(numCols) + " elements\n");
 
         for (size_t j = 0; j < numCols; ++j)
             elements[i][j] = std::stod(row[j]);
