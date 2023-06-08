@@ -6,17 +6,16 @@
 #define PA2_SPARSEMATRIX_H
 
 #include "Matrix.h"
-#include <vector>
 #include <map>
 
 class SparseMatrix : public Matrix {
-    std::map <std::pair<std::size_t, std::size_t>, double> m_data;
+    std::map <std::pair<size_t, size_t>, double> m_data;
 public:
-    SparseMatrix(std::size_t numRows, std::size_t numCols);
-    double getVal(std::size_t row, std::size_t col) const override;
+    SparseMatrix(size_t numRows, size_t numCols, std::map <std::pair<size_t, size_t>, double> data);
+    double getVal(size_t row, size_t col) const override;
     std::shared_ptr<Matrix> clone() const override;
-    void print() const override;
-    void printToFile() const override;
+    std::string print(const std::string &matrixName) const override;
+    std::string printToFile(const std::string &matrixName) const override;
 };
 
 #endif //PA2_SPARSEMATRIX_H
