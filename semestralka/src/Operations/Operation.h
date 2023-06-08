@@ -8,9 +8,13 @@
 #include "../Matrices/Matrix.h"
 
 class Operation {
+protected:
+    std::shared_ptr<Matrix> m_lhs;
 public:
+    Operation(std::shared_ptr<Matrix> lhs);
     virtual ~Operation() {}
-    virtual std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a) = 0;
+    virtual std::vector <std::vector <double>> execute() = 0;
 };
+
 
 #endif //PA2_OPERATION_H
