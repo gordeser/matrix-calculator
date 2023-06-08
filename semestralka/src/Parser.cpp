@@ -17,6 +17,13 @@
 #include "Operations/TrimmingOperation.h"
 #include "Exceptions/ParserException.h"
 
+void Parser::printAllElements() {
+    auto allNames = m_storage.getAllMatrices();
+    for (const auto &name : allNames) {
+        m_console.showText(m_storage.getMatrix(name)->print(name));
+        m_console.showText("------------------------------------\n");
+    }
+}
 
 void Parser::exportElements(const std::string &filename, const std::vector<std::string> &elements) {
     m_textexport.exportData(filename, elements, m_storage);
