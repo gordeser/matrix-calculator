@@ -14,8 +14,8 @@ public:
     std::size_t rank() const override;
     double determinant() const override;
     std::shared_ptr<Matrix> clone() const override;
-    void print() const override;
-    void printToFile() const override;
+    std::string print(const std::string &matrixName) const override;
+    std::string printToFile(const std::string &matrixName) const override;
 };
 
 #endif //PA2_IDENTITYMATRIX_H
