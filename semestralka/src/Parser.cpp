@@ -17,6 +17,10 @@
 #include "Operations/TrimmingOperation.h"
 #include "Exceptions/ParserException.h"
 
+void Parser::importElements(const std::vector<std::string> &elements) {
+    m_textexport.importData(elements, m_storage);
+}
+
 void Parser::scanElements(const std::string &name) {
     m_console.showText("Input size of matrix: ");
     std::string input = m_utilities.deleteSpaces(m_console.getInput());
