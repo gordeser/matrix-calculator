@@ -9,8 +9,8 @@
 
 class AdditionOperation : public BinaryOperation {
 public:
-    std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a, const std::shared_ptr<Matrix> &b) override;
-    std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a, double b) override;
+    AdditionOperation(const std::shared_ptr <Matrix> &lhs, const std::shared_ptr <Matrix> &rhs);
+    std::vector <std::vector <double>> execute() override;
 };
 
 #endif //PA2_ADDITIONOPERATION_H
