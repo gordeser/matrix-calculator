@@ -5,11 +5,12 @@
 #ifndef PA2_TRANSPOSEOPERATION_H
 #define PA2_TRANSPOSEOPERATION_H
 
-#include <vector>
 #include "Operation.h"
 
 class TransposeOperation : public Operation {
-    std::vector <std::vector <double>> execute(const std::shared_ptr<Matrix> &a) override;
+public:
+    TransposeOperation(std::shared_ptr <Matrix> lhs);
+    std::vector <std::vector <double>> execute() override;
 };
 
 #endif //PA2_TRANSPOSEOPERATION_H
