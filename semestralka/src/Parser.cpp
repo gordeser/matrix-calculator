@@ -17,6 +17,15 @@
 #include "Operations/TrimmingOperation.h"
 #include "Exceptions/ParserException.h"
 
+void Parser::printDet(const std::vector<std::string> &elements) {
+    for (const auto &elem : elements) {
+        double det = m_storage.getMatrix(elem)->determinant();
+        std::ostringstream ss;
+        ss << "Determinant of matrix " << elem << " is " << det << + "\n";
+        m_console.showText(ss.str());
+    }
+}
+
 void Parser::printRank(const std::vector<std::string> &elements) {
     for (const auto &elem : elements) {
         size_t rank = m_storage.getMatrix(elem)->rank();
