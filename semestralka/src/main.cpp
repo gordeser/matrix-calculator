@@ -4,6 +4,9 @@
 
 #include "MatrixCalculator.h"
 
+/**
+ * Main functions that starts the application
+ */
 int main() {
     MatrixCalculator app;
     app.runApplication();
