@@ -8,13 +8,20 @@
 #include "Parser.h"
 #include "UserInterfaces/ConsoleUI.h"
 
+/**
+ * @class Represents main class of matrix calculator
+ */
 class MatrixCalculator {
+    /** @var parcer for parcing user input */
     Parser m_parser;
+    /** @var use console user-interface */
     ConsoleUI m_console;
-
+    /** Method to show greeting message */
     void showGreeting();
+    /** Method to show farewall message */
     void showFarewall();
 public:
+    /** Method to start the application */
     void runApplication();
 };
 
