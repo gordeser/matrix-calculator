@@ -105,11 +105,3 @@ bool Utilities::checkName(const std::string &name) {
 
     return true;
 }
-
-bool Utilities::checkTokens(const std::vector<std::string> &tokens) {
-    for (const auto &token : tokens)
-        for (char c : token)
-            if (!std::isalnum(c) and c != '=')
-                return false;
-    return true;
-}

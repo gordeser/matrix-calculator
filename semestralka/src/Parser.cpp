@@ -123,9 +123,6 @@ void Parser::parseInput(std::string input) {
 
         std::vector <std::string> operations(tokens.begin()+2, tokens.end());
 
-        if (!m_utilities.checkTokens(operations))
-            throw ParserException("Unknown command. Try \"help\"\n");
-
         auto matrix = executeOperations(operations);
         if (matrix != nullptr) {
             m_storage.addMatrix(name, matrix);
@@ -142,7 +139,6 @@ void Parser::parseInput(std::string input) {
             throw ParserException("Unknown command. Try \"help\"\n");
     }
 }
-
 
 std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elements) {
     std::string operationName = elements[0];
