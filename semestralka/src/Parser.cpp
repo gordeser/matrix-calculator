@@ -155,11 +155,9 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
         auto operands = std::vector<std::string>(elements.begin()+1, elements.end());
         std::shared_ptr<Matrix> operand;
 
-        if (operands.size() > 1) {
+        if (operands.size() > 1)
             operand = executeOperations(operands);
-            if (operand == nullptr)
-                throw ParserException("There is an error in nested operations\n");
-        } else
+        else
             operand = m_storage.getMatrix(operands[0]);
 
         operation = std::make_shared<TransposeOperation>(operand);
@@ -172,11 +170,9 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
         auto operands = std::vector<std::string>(elements.begin()+1, elements.end());
         std::shared_ptr<Matrix> operand;
 
-        if (operands.size() > 1) {
+        if (operands.size() > 1)
             operand = executeOperations(operands);
-            if (operand == nullptr)
-                throw ParserException("There is an error in nested operations\n");
-        } else
+        else
             operand = m_storage.getMatrix(operands[0]);
 
         operation = std::make_shared<InversionOperation>(operand);
@@ -189,11 +185,9 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
         auto operands = std::vector<std::string>(elements.begin()+1, elements.end());
         std::shared_ptr<Matrix> operand;
 
-        if (operands.size() > 1) {
+        if (operands.size() > 1)
             operand = executeOperations(operands);
-            if (operand == nullptr)
-                throw ParserException("There is an error in nested operations\n");
-        } else
+        else
             operand = m_storage.getMatrix(operands[0]);
 
         operation = std::make_shared<GaussEliminationOperation>(operand);
@@ -209,11 +203,9 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
         auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
         std::shared_ptr<Matrix> secondOperand;
 
-        if (nextOperands.size() > 1) {
+        if (nextOperands.size() > 1)
             secondOperand = executeOperations(nextOperands);
-            if (secondOperand == nullptr)
-                throw ParserException("There is an error in nested operations\n");
-        } else
+        else
             secondOperand = m_storage.getMatrix(nextOperands[0]);
 
         operation = std::make_shared<AdditionOperation>(firstOperand, secondOperand);
@@ -227,11 +219,9 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
         auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
         std::shared_ptr<Matrix> secondOperand;
 
-        if (nextOperands.size() > 1) {
+        if (nextOperands.size() > 1)
             secondOperand = executeOperations(nextOperands);
-            if (secondOperand == nullptr)
-                throw ParserException("There is an error in nested operations\n");
-        } else
+        else
             secondOperand = m_storage.getMatrix(nextOperands[0]);
 
         operation = std::make_shared<SubtractionOperation>(firstOperand, secondOperand);
@@ -246,11 +236,9 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
             auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
             std::shared_ptr <Matrix> matrixOperand;
 
-            if (nextOperands.size() > 1) {
+            if (nextOperands.size() > 1)
                 matrixOperand = executeOperations(nextOperands);
-                if (matrixOperand == nullptr)
-                    throw ParserException("There is an error in nested operations\n");
-            } else
+            else
                 matrixOperand = m_storage.getMatrix(nextOperands[0]);
 
             operation = std::make_shared<MultiplicationNumberOperation>(matrixOperand, numOperand);
@@ -259,11 +247,9 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
             auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
             std::shared_ptr <Matrix> secondOperand;
 
-            if (nextOperands.size() > 1) {
+            if (nextOperands.size() > 1)
                 secondOperand = executeOperations(nextOperands);
-                if (secondOperand == nullptr)
-                    throw ParserException("There is an error in nested operations\n");
-            } else
+            else
                 secondOperand = m_storage.getMatrix(nextOperands[0]);
 
             operation = std::make_shared<MultiplicationOperation>(firstOperand, secondOperand);
@@ -281,11 +267,9 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
         auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
         std::shared_ptr<Matrix> secondOperand;
 
-        if (nextOperands.size() > 1) {
+        if (nextOperands.size() > 1)
             secondOperand = executeOperations(nextOperands);
-            if (secondOperand == nullptr)
-                throw ParserException("There is an error in nested operations\n");
-        } else
+        else
             secondOperand = m_storage.getMatrix(nextOperands[0]);
 
         operation = std::make_shared<JoiningRightOperation>(firstOperand, secondOperand);
@@ -299,11 +283,9 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
         auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
         std::shared_ptr<Matrix> secondOperand;
 
-        if (nextOperands.size() > 1) {
+        if (nextOperands.size() > 1)
             secondOperand = executeOperations(nextOperands);
-            if (secondOperand == nullptr)
-                throw ParserException("There is an error in nested operations\n");
-        } else
+        else
             secondOperand = m_storage.getMatrix(nextOperands[0]);
 
         operation = std::make_shared<JoiningDownOperation>(firstOperand, secondOperand);
@@ -328,11 +310,9 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
         auto nextOperands = std::vector<std::string>(elements.begin()+1, elements.end()-4);
         std::shared_ptr <Matrix> matrixOperand;
 
-        if (nextOperands.size() > 1) {
+        if (nextOperands.size() > 1)
             matrixOperand = executeOperations(nextOperands);
-            if (matrixOperand == nullptr)
-                throw ParserException("There is an error in nested operations\n");
-        } else
+        else
             matrixOperand = m_storage.getMatrix(nextOperands[0]);
 
         operation = std::make_shared<TrimmingOperation>(matrixOperand, numRows, numCols, offsetRows, offsetCols);
@@ -356,8 +336,6 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
 
         if (nextOperands.size() > 1) {
             matrixOperand = executeOperations(nextOperands);
-            if (matrixOperand == nullptr)
-                throw ParserException("There is an error in nested operations\n");
         } else
             matrixOperand = m_storage.getMatrix(nextOperands[0]);
 
@@ -365,7 +343,7 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     }
-    return nullptr;
+    throw ParserException("There is an error in operations\n");
 }
 
 void Parser::printHelp() {
