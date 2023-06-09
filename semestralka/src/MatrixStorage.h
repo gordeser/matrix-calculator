@@ -9,13 +9,34 @@
 #include <string>
 #include "Matrices/Matrix.h"
 
+/** @class Represents database contains matrices */
 class MatrixStorage {
+    /** @var map to save the data, where key is matrix name and value is Matrix shared smart-pointer */
     std::map <std::string, std::shared_ptr<Matrix>> m_data;
 public:
+    /**
+     * Method that adds matrix to the database
+     * @param name of matrix
+     * @param matrix shared smart-pointer
+     */
     void addMatrix(const std::string &name, const std::shared_ptr<Matrix> &matrix);
+    /**
+     * Method that removes matrix from the database, throws StorageException if there is no matrix with that name
+     * @param name of matrix
+     */
     void removeMatrix(const std::string &name);
+    /** Method that removes all matrices from the database */
     void removeAllMatrices();
+    /**
+     * Method to get shared smart-pointer to the matrix with some name, throws StorageException if there is no matrix with that name
+     * @param name of matrix
+     * @return shared smart-pointer to the matrix with that name
+     */
     std::shared_ptr<Matrix> getMatrix(const std::string &name) const;
+    /**
+     * Method to get all matrix names in database, throws StorageException if there is no matrices in database
+     * @return vector of matrices' names
+     */
     std::vector <std::string> getAllMatrices();
 };
 
