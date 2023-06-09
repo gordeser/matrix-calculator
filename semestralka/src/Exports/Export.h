@@ -13,7 +13,7 @@ class Export {
 public:
     virtual ~Export() {}
     virtual void exportData(const std::string &filename, const std::vector <std::string> &names, const MatrixStorage &storage) = 0;
-    virtual void importData(const std::vector<std::string> &filenames, MatrixStorage &storage) = 0;
+    virtual void importData(const std::string &filename, MatrixStorage &storage) = 0;
 };
 
 #endif //PA2_EXPORT_H

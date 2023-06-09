@@ -416,8 +416,9 @@ void Parser::deleteAllElements() {
     m_storage.removeAllMatrices();
 }
 
-void Parser::importElements(const std::vector<std::string> &elements) {
-    m_textexport.importData(elements, m_storage);
+void Parser::importElements(const std::vector<std::string> &filenames) {
+    for (const auto &filename : filenames)
+        m_textexport.importData(filename, m_storage);
 }
 
 void Parser::scanElements(const std::string &name) {
