@@ -116,4 +116,8 @@ void TextExport::importData(const std::string &filename, MatrixStorage &storage)
         storage.addMatrix(name, result);
         getline(inputFile, input);
     }
+
+    inputFile.close();
+    if (inputFile.is_open())
+        throw ExporterException("Cannot close the file\n");
 }
