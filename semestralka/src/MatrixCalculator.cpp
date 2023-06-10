@@ -8,6 +8,7 @@
 #include "Exceptions/OperationException.h"
 #include "Exceptions/ParserException.h"
 #include "Exceptions/StorageException.h"
+#include "Exceptions/ExecuterException.h"
 
 void MatrixCalculator::runApplication() {
     showGreeting();
@@ -30,6 +31,8 @@ void MatrixCalculator::runApplication() {
         } catch (ParserException &e) {
             m_console.showText(e.what());
         } catch (StorageException &e) {
+            m_console.showText(e.what());
+        } catch (ExecuterException &e) {
             m_console.showText(e.what());
         }
     }
