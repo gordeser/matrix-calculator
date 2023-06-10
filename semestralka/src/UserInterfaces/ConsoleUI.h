@@ -20,7 +20,7 @@ public:
      * Overridden method to get input from user
      * @return string input
      */
-    std::string getInput() override;
+    std::string getInput() const override;
 };
 
 #endif //PA2_CONSOLEUI_H

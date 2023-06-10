@@ -21,7 +21,7 @@ public:
      * Virtual method to get input from user
      * @return string input
      */
-    virtual std::string getInput() = 0;
+    virtual std::string getInput() const = 0;
 };
 
 #endif //PA2_USERINTERFACE_H
