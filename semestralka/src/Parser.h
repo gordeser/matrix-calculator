@@ -20,10 +20,14 @@ class Parser {
     Utilities m_utilities;
     /** @var to export some text */
     TextExport m_textexport;
+    /** @var to execute operations */
     Executer m_executer;
-
+    /**
+     * Method to validate all arguments names
+     * @param arguments to validate
+     * @throw ParserException if there is bad argument name
+     */
     void checkArgumentsNames(std::vector <std::string> &arguments) const;
-
     /** Method that prints help message */
     void printHelp() const;
     /**
@@ -61,6 +65,7 @@ class Parser {
     /**
      * Method that scan elements of matrix with given name
      * @param name of matrix
+     * @throw ParserException if user inputted bad number of rows or columns, or user's inputted row has more or less elements than count of column
      */
     void scanElements(const std::string &name);
     /**
@@ -77,6 +82,7 @@ public:
     /**
      * Method that parses user's input
      * @param input to parse
+     * @throw ParserException if commands could not be executed (because of bad input)
      */
     void parseInput(std::string input);
 };

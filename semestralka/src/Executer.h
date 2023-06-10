@@ -19,7 +19,7 @@ public:
      * @param operations that need to be executed
      * @param storage to take elements from
      * @return shared smart-pointer to the matrix after executed operations
-     * @throw ExecuterException in case of some invalid elements
+     * @throw ExecuterException if operation could not be executed (due invalid order)
      */
     std::shared_ptr<Matrix> executeOperations(std::vector<std::string> &elements, const MatrixStorage &storage) const;
 };
