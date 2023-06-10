@@ -7,9 +7,6 @@
 
 #include <string>
 
-/**
- * @class Configuration class with commands' names
- */
 class Commands {
 public:
     inline static const std::string ADD = "add";

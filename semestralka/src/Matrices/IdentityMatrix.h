@@ -7,7 +7,6 @@
 
 #include "Matrix.h"
 
-/** @class inherits from class Matrix to represent identity type of matrix */
 class IdentityMatrix : public Matrix {
 public:
     /**

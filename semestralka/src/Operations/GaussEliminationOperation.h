@@ -7,7 +7,6 @@
 
 #include "Operation.h"
 
-/** @class inherits from Operation to represent Gauss Elimination Method */
 class GaussEliminationOperation : public Operation {
     /**
      * Method to swap two rows of matrix

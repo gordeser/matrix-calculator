@@ -8,7 +8,6 @@
 #include "UserInterface.h"
 
 
-/** @class inherits from class UserInterface to represent console user interface */
 class ConsoleUI : public UserInterface {
 public:
     /**

@@ -10,7 +10,6 @@
 #include "Utilities.h"
 #include "Exports/TextExport.h"
 
-/** @class Parse user inputs to execute operations */
 class Parser {
     /** @var storage to save matrices */
     MatrixStorage m_storage;

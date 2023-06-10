@@ -8,7 +8,6 @@
 #include "Operation.h"
 #include "../Utilities.h"
 
-/** @class inherits from Operation to represent inversion operation */
 class InversionOperation : public Operation {
     /** @var to use createMatrix tool */
     Utilities m_utilities;

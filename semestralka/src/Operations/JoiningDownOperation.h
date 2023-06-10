@@ -7,7 +7,6 @@
 
 #include "BinaryOperation.h"
 
-/** @class inherits from BinaryOperation to represent joining rows operation */
 class JoiningDownOperation : public BinaryOperation {
 public:
     /**

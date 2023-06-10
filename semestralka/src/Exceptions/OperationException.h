@@ -8,8 +8,6 @@
 #include <exception>
 #include <string>
 
-
-/** @class inherited from std::exception to handle all exceptions in operation section */
 class OperationException : public std::exception {
     /** @var description of error */
     std::string m_message;

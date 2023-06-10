@@ -8,7 +8,6 @@
 #include "BinaryOperation.h"
 #include "../Utilities.h"
 
-/** @class inherits from class Operation to represent exponentiation operation */
 class ExponentiationOperation : public Operation {
     /** @var to use createMatrix method */
     Utilities m_utilities;

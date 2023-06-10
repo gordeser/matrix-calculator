@@ -8,9 +8,6 @@
 #include "Parser.h"
 #include "UserInterfaces/ConsoleUI.h"
 
-/**
- * @class Represents main class of matrix calculator
- */
 class MatrixCalculator {
     /** @var parcer for parcing user input */
     Parser m_parser;

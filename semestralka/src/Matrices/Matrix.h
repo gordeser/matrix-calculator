@@ -12,7 +12,6 @@
 #include <vector>
 #include <memory>
 
-/** @class Abstract class that represents types of matrices (dense, sparse, identity, ...) */
 class Matrix {
     /**
      * Method to count determinant of matrix

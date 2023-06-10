@@ -9,7 +9,6 @@
 #include "Matrices/SparseMatrix.h"
 #include "Matrices/IdentityMatrix.h"
 
-/** @class To have some useful methods */
 class Utilities {
 public:
     /**

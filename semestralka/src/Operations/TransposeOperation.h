@@ -7,7 +7,6 @@
 
 #include "Operation.h"
 
-/** @class inherits from Operation to represent transpose operation */
 class TransposeOperation : public Operation {
 public:
     /**

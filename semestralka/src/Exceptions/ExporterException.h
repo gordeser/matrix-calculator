@@ -9,7 +9,6 @@
 #include <exception>
 #include <string>
 
-/** @class inherited from std::exception to handle all exceptions in export section */
 class ExporterException : public std::exception {
     /** @var description of error */
     std::string m_message;

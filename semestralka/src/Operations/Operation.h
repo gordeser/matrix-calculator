@@ -7,7 +7,6 @@
 
 #include "../Matrices/Matrix.h"
 
-/** @class Abstract class that represents unary operation */
 class Operation {
 protected:
     /** @var matrix on left hand side */

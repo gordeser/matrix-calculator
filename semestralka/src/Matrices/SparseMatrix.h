@@ -8,7 +8,6 @@
 #include "Matrix.h"
 #include <map>
 
-/** @class inherits from class Matrix to represent sparse type of matrix */
 class SparseMatrix : public Matrix {
     /** @var contains values of matrix in map, where key is pair of row and column of value, value is value of matrix */
     std::map <std::pair<size_t, size_t>, double> m_data;

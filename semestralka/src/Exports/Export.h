@@ -9,7 +9,6 @@
 #include "../Matrices/Matrix.h"
 #include "../MatrixStorage.h"
 
-/** @class Abstract class that represents types of export (text, binary, ...) */
 class Export {
 public:
     /** Virtual Destructor */

@@ -7,7 +7,6 @@
 
 #include "Operation.h"
 
-/** @class inherits from Operation to represent multiplication by a number operation */
 class MultiplicationNumberOperation : public Operation {
 protected:
     /** @var scalar on right hand side */

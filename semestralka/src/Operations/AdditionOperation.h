@@ -7,7 +7,6 @@
 
 #include "BinaryOperation.h"
 
-/** @class inherits from class BinaryOperation to represent addition operation */
 class AdditionOperation : public BinaryOperation {
 public:
     /**
@@ -17,7 +16,7 @@ public:
      */
     AdditionOperation(const std::shared_ptr <Matrix> &lhs, const std::shared_ptr <Matrix> &rhs);
     /**
-     * Overridden matrix that executes addition operation
+     * Overridden method that executes addition operation
      * @return matrix values after addition operaation
      */
     std::vector <std::vector <double>> execute() const override;

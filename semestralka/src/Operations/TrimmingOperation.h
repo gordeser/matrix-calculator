@@ -7,7 +7,6 @@
 
 #include "Operation.h"
 
-/** @class inherits from Operation to represent trimming operation */
 class TrimmingOperation : public Operation {
 protected:
     /** @var count of rows of new matrix */

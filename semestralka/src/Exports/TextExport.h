@@ -8,7 +8,6 @@
 #include "Export.h"
 #include "../Utilities.h"
 
-/** @class inherits from class Export to represent text type of export */
 class TextExport : public Export {
     /** @var to contain some useful utilities */
     Utilities m_utilities;

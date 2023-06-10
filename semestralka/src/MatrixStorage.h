@@ -9,7 +9,6 @@
 #include <string>
 #include "Matrices/Matrix.h"
 
-/** @class Represents database contains matrices */
 class MatrixStorage {
     /** @var map to save the data, where key is matrix name and value is Matrix shared smart-pointer */
     std::map <std::string, std::shared_ptr<Matrix>> m_data;

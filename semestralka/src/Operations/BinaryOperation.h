@@ -7,7 +7,6 @@
 
 #include "Operation.h"
 
-/** @class Abstract class that inherits from class Operation to represent binary operation */
 class BinaryOperation : public Operation {
 protected:
     /** @var matrix on right hand side */

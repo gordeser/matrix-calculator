@@ -7,7 +7,6 @@
 
 #include "BinaryOperation.h"
 
-/** @class inherits from BinaryOperation to represent multiplication operation */
 class MultiplicationOperation : public BinaryOperation {
 public:
     /**

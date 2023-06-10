@@ -7,7 +7,6 @@
 
 #include "Matrix.h"
 
-/** @class inherits from class Matrix to represent dense type of matrix */
 class DenseMatrix : public Matrix {
     /** @var contains values of matrix */
     std::vector<std::vector <double>> m_data;
