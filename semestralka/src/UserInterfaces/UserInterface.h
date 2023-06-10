@@ -7,7 +7,7 @@
 
 #include <string>
 
-/** @class Abstarct class represents types of user interface (console, gui, ...) */
+/** @class Abstarct class that represents types of user interface (console, gui, ...) */
 class UserInterface {
 public:
     /** Virtual destructor */

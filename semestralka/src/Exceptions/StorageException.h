@@ -9,7 +9,7 @@
 #include <exception>
 #include <string>
 
-/** @class to handle all exceptions in storage section */
+/** @class inherited from std::exception to handle all exceptions in storage section */
 class StorageException : public std::exception {
     /** @var description of error */
     std::string m_message;

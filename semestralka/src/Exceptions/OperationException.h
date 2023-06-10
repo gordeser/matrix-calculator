@@ -9,7 +9,7 @@
 #include <string>
 
 
-/** @class to handle all exceptions in operation section */
+/** @class inherited from std::exception to handle all exceptions in operation section */
 class OperationException : public std::exception {
     /** @var description of error */
     std::string m_message;
