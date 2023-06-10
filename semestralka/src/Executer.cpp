@@ -20,88 +20,96 @@
 
 std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &elements, const MatrixStorage &storage) const {
     std::string operationName = elements[0];
-    std::shared_ptr <Operation> operation;
+    std::unique_ptr <Operation> operation;
 
     if (operationName == Commands::TRANS) {
+        // if there is no arguments
         if (elements.size() < 2)
             throw ExecuterException("USAGE: trans <matrix>\n");
 
-        auto operands = std::vector<std::string>(elements.begin()+1, elements.end());
-        std::shared_ptr<Matrix> operand;
+        std::vector<std::string> operands(elements.begin()+1, elements.end());
+        std::shared_ptr<Matrix> matrixOperand;
 
+        // if there are nested operations
         if (operands.size() > 1)
-            operand = executeOperations(operands, storage);
+            matrixOperand = executeOperations(operands, storage);
         else
-            operand = storage.getMatrix(operands[0]);
+            matrixOperand = storage.getMatrix(operands[0]);
 
-        operation = std::make_shared<TransposeOperation>(operand);
+        operation = std::make_unique<TransposeOperation>(matrixOperand);
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::INV) {
+        // if there is no arguments
         if (elements.size() < 2)
             throw ExecuterException("USAGE: inv <matrix>\n");
 
-        auto operands = std::vector<std::string>(elements.begin()+1, elements.end());
-        std::shared_ptr<Matrix> operand;
+        std::vector<std::string> operands(elements.begin()+1, elements.end());
+        std::shared_ptr<Matrix> matrixOperand;
 
+        // if there are nested operations
         if (operands.size() > 1)
-            operand = executeOperations(operands, storage);
+            matrixOperand = executeOperations(operands, storage);
         else
-            operand = storage.getMatrix(operands[0]);
+            matrixOperand = storage.getMatrix(operands[0]);
 
-        operation = std::make_shared<InversionOperation>(operand);
+        operation = std::make_unique<InversionOperation>(matrixOperand);
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::GEM) {
+        // if there is no arguments
         if (elements.size() < 2)
             throw ExecuterException("USAGE: gem <matrix>\n");
 
-        auto operands = std::vector<std::string>(elements.begin()+1, elements.end());
-        std::shared_ptr<Matrix> operand;
+        std::vector<std::string> operands(elements.begin()+1, elements.end());
+        std::shared_ptr<Matrix> matrixOperand;
 
+        // if there are nested operations
         if (operands.size() > 1)
-            operand = executeOperations(operands, storage);
+            matrixOperand = executeOperations(operands, storage);
         else
-            operand = storage.getMatrix(operands[0]);
+            matrixOperand = storage.getMatrix(operands[0]);
 
-        operation = std::make_shared<GaussEliminationOperation>(operand);
+        operation = std::make_unique<GaussEliminationOperation>(matrixOperand);
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
-
-
     } else if (operationName == Commands::ADD) {
+        // if there are less than 2 arguments
         if (elements.size() < 3)
             throw ExecuterException("USAGE: add <matrix> <matrix>\n");
 
-        auto firstOperand = storage.getMatrix(elements[1]);
+        auto firstMatrixOperand = storage.getMatrix(elements[1]);
         auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
-        std::shared_ptr<Matrix> secondOperand;
+        std::shared_ptr<Matrix> secondMatrixOperand;
 
+        // if there are nested operations
         if (nextOperands.size() > 1)
-            secondOperand = executeOperations(nextOperands, storage);
+            secondMatrixOperand = executeOperations(nextOperands, storage);
         else
-            secondOperand = storage.getMatrix(nextOperands[0]);
+            secondMatrixOperand = storage.getMatrix(nextOperands[0]);
 
-        operation = std::make_shared<AdditionOperation>(firstOperand, secondOperand);
+        operation = std::make_unique<AdditionOperation>(firstMatrixOperand, secondMatrixOperand);
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::SUB) {
+        // if there are less than 2 arguments
         if (elements.size() < 3)
             throw ExecuterException("USAGE: sub <matrix> <matrix>\n");
 
-        auto firstOperand = storage.getMatrix(elements[1]);
+        auto firstMatrixOperand = storage.getMatrix(elements[1]);
         auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
-        std::shared_ptr<Matrix> secondOperand;
+        std::shared_ptr<Matrix> secondMatrixOperand;
 
         if (nextOperands.size() > 1)
-            secondOperand = executeOperations(nextOperands, storage);
+            secondMatrixOperand = executeOperations(nextOperands, storage);
         else
-            secondOperand = storage.getMatrix(nextOperands[0]);
+            secondMatrixOperand = storage.getMatrix(nextOperands[0]);
 
-        operation = std::make_shared<SubtractionOperation>(firstOperand, secondOperand);
+        operation = std::make_unique<SubtractionOperation>(firstMatrixOperand, secondMatrixOperand);
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::MUL) {
+        // if there are less than 2 arguments
         if (elements.size() < 3)
             throw ExecuterException("USAGE: mul <number> <matrix> OR mul <matrix> <matrix>\n");
 
@@ -110,23 +118,25 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
             std::shared_ptr <Matrix> matrixOperand;
 
+            // if there are nested operations
             if (nextOperands.size() > 1)
                 matrixOperand = executeOperations(nextOperands, storage);
             else
                 matrixOperand = storage.getMatrix(nextOperands[0]);
 
-            operation = std::make_shared<MultiplicationNumberOperation>(matrixOperand, numOperand);
+            operation = std::make_unique<MultiplicationNumberOperation>(matrixOperand, numOperand);
         } catch (std::invalid_argument &e) {
-            auto firstOperand = storage.getMatrix(elements[1]);
+            auto firstMatrixOperand = storage.getMatrix(elements[1]);
             auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
-            std::shared_ptr <Matrix> secondOperand;
+            std::shared_ptr <Matrix> secondMatrixOperand;
 
+            // if there are nested operations
             if (nextOperands.size() > 1)
-                secondOperand = executeOperations(nextOperands, storage);
+                secondMatrixOperand = executeOperations(nextOperands, storage);
             else
-                secondOperand = storage.getMatrix(nextOperands[0]);
+                secondMatrixOperand = storage.getMatrix(nextOperands[0]);
 
-            operation = std::make_shared<MultiplicationOperation>(firstOperand, secondOperand);
+            operation = std::make_unique<MultiplicationOperation>(firstMatrixOperand, secondMatrixOperand);
         } catch (std::out_of_range &e) {
             throw ExecuterException("Numbers are too large\n");
         }
@@ -134,6 +144,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::JOINRIGHT) {
+        // if there are less than 2 arguments
         if (elements.size() < 3)
             throw ExecuterException("USAGE: joinright <matrix> <matrix>\n");
 
@@ -141,15 +152,17 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
         auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
         std::shared_ptr<Matrix> secondOperand;
 
+        // if there are nested operations
         if (nextOperands.size() > 1)
             secondOperand = executeOperations(nextOperands, storage);
         else
             secondOperand = storage.getMatrix(nextOperands[0]);
 
-        operation = std::make_shared<JoiningRightOperation>(firstOperand, secondOperand);
+        operation = std::make_unique<JoiningRightOperation>(firstOperand, secondOperand);
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::JOINDOWN) {
+        // if there are less than 2 arguments
         if (elements.size() < 3)
             throw ExecuterException("USAGE: joindown <matrix> <matrix>\n");
 
@@ -157,15 +170,17 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
         auto nextOperands = std::vector<std::string>(elements.begin()+2, elements.end());
         std::shared_ptr<Matrix> secondOperand;
 
+        // if there are nested operations
         if (nextOperands.size() > 1)
             secondOperand = executeOperations(nextOperands, storage);
         else
             secondOperand = storage.getMatrix(nextOperands[0]);
 
-        operation = std::make_shared<JoiningDownOperation>(firstOperand, secondOperand);
+        operation = std::make_unique<JoiningDownOperation>(firstOperand, secondOperand);
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::TRIM) {
+        // if there are less than 6 arguments
         if (elements.size() < 6)
             throw ExecuterException("USAGE: trim <matrix> <num_rows> <num_cols> <offset_rows> <offset_cols>\n");
 
@@ -184,15 +199,17 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
         auto nextOperands = std::vector<std::string>(elements.begin()+1, elements.end()-4);
         std::shared_ptr <Matrix> matrixOperand;
 
+        // if there are nested operations
         if (nextOperands.size() > 1)
             matrixOperand = executeOperations(nextOperands, storage);
         else
             matrixOperand = storage.getMatrix(nextOperands[0]);
 
-        operation = std::make_shared<TrimmingOperation>(matrixOperand, numRows, numCols, offsetRows, offsetCols);
+        operation = std::make_unique<TrimmingOperation>(matrixOperand, numRows, numCols, offsetRows, offsetCols);
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::EXP) {
+        // if there are less than 2 arguments
         if (elements.size() < 3)
             throw ExecuterException("USAGE: exp <matrix> <number>\n");
 
@@ -208,12 +225,13 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
         auto nextOperands = std::vector<std::string>(elements.begin()+1, elements.end()-1);
         std::shared_ptr<Matrix> matrixOperand;
 
+        // if there are nested operations
         if (nextOperands.size() > 1) {
             matrixOperand = executeOperations(nextOperands, storage);
         } else
             matrixOperand = storage.getMatrix(nextOperands[0]);
 
-        operation = std::make_shared<ExponentiationOperation>(matrixOperand, numOperand);
+        operation = std::make_unique<ExponentiationOperation>(matrixOperand, numOperand);
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     }
