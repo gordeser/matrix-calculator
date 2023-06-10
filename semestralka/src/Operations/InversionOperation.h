@@ -36,6 +36,7 @@ class InversionOperation : public Operation {
     /**
      * Method to inverse the matrix
      * @param matrix after inversion
+     * @throw OperationException if matrix is singular
      */
     void inverse(std::vector<std::vector <double>> &matrix) const;
 public:
@@ -47,6 +48,7 @@ public:
     /**
      * Overridden method to execute inversion operation
      * @return values of matrix after operation
+     * @throw OperationException if matrix is not square or matrix determinant is zero
      */
     std::vector <std::vector <double>> execute() const override;
 };

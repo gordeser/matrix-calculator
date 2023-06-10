@@ -30,6 +30,7 @@ public:
     /**
      * Overridden method to execute trimming operation
      * @return values of matrix after operation
+     * @throw OperationException if number of rows and rows offset are too large, or number of columns and columns offset
      */
     std::vector <std::vector <double>> execute() const;
 };

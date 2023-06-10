@@ -18,6 +18,7 @@ public:
     /**
      * Overridden method to execute multiplication operation
      * @return values of matrix after operation
+     * @throw OperationException if number of lhs matrix columns is not equal to number of rhs matrix rows
      */
     std::vector <std::vector <double>> execute() const override;
 };

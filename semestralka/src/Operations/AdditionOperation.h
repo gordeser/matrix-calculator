@@ -17,7 +17,8 @@ public:
     AdditionOperation(const std::shared_ptr <Matrix> &lhs, const std::shared_ptr <Matrix> &rhs);
     /**
      * Overridden method that executes addition operation
-     * @return matrix values after addition operaation
+     * @return matrix values after addition operation
+     * @throw OperationException if number of rows or columns are not equal
      */
     std::vector <std::vector <double>> execute() const override;
 };

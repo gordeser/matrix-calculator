@@ -24,6 +24,7 @@ public:
     /**
      * Overridden method to execute exponentiation operation
      * @return values of matrix after operation
+     * @throw OperationException if matrix is not square
      */
     std::vector <std::vector <double>> execute() const override;
 };

@@ -58,6 +58,7 @@ public:
     /**
      * Virtual method to count determinant of matrix
      * @return determinant of matrix
+     * @throw MatrixException if determinant cannot be counted
      */
     virtual double determinant() const;
     /**

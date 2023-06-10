@@ -18,6 +18,7 @@ public:
     /**
      * Overridden method to execute substraction operation
      * @return values of matrix after operation
+     * @throw OperationException if number of rows or columns are not equal
      */
     std::vector <std::vector <double>> execute() const override;
 };

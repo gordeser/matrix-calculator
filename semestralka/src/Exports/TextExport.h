@@ -17,12 +17,14 @@ public:
      * @param filename to export matrices
      * @param names vector of matrices to export
      * @param storage to export from
+     * @throw ExporterException if cannot open or close the file or write to file
      */
     void exportData(const std::string &filename, const std::vector <std::string> &names, const MatrixStorage &storage) const override;
     /**
      * Overridden method that imports matrices from file in text way
      * @param filename to import matrices from
      * @param storage to import
+     * @throw ExporterException if cannot open or close the file, cannot read from file, there is invalid data or values are too large
      */
     void importData(const std::string &filename, MatrixStorage &storage) override;
 };

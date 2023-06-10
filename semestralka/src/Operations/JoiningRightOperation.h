@@ -18,6 +18,7 @@ public:
     /**
      * Overridden method to execute joining columns operation
      * @return values of matrix after operation
+     * @throw OperationException if number of lhs and rhs rows are not equal
      */
     std::vector <std::vector <double>> execute() const override;
 };
