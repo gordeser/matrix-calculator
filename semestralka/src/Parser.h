@@ -22,6 +22,8 @@ class Parser {
     TextExport m_textexport;
     Executer m_executer;
 
+    void checkArgumentsNames(std::vector <std::string> &arguments) const;
+
     /** Method that prints help message */
     void printHelp() const;
     /**
