@@ -37,7 +37,7 @@ std::string SparseMatrix::print(const std::string &matrixName) const {
 
 std::string SparseMatrix::printToFile(const std::string &matrixName) const {
     std::ostringstream result;
-    result << matrixName + " S " << m_rows << " " << m_cols;
+    result << matrixName + " S " << m_rows << " " << m_cols << " ";
     for (const auto &elem : m_data)
         result << elem.first.first << " " << elem.first.second << " " << elem.second;
     return result.str();

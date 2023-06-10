@@ -153,12 +153,16 @@ void Parser::printHelp() const {
 }
 
 void Parser::printElements(const std::vector<std::string> &arguments) const {
-    for (const auto &arg : arguments)
+    m_console.showText("------------------------------------\n");
+    for (const auto &arg : arguments) {
         m_console.showText(m_storage.getMatrix(arg)->print(arg));
+        m_console.showText("------------------------------------\n");
+    }
 }
 
 void Parser::printAllElements() const {
     auto allNames = m_storage.getAllMatrices();
+    m_console.showText("------------------------------------\n");
     for (const auto &name : allNames) {
         m_console.showText(m_storage.getMatrix(name)->print(name));
         m_console.showText("------------------------------------\n");
