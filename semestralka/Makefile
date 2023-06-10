@@ -10,7 +10,7 @@ SOURCES = $(wildcard src/*.cpp src/*/*.cpp)
 OBJECTS = $(SOURCES:src/%.cpp=$(BUILD_DIR)/%.o) # change .cpp files to build/%.o file
 
 .PHONY: all
-all: compile
+all: compile doc
 
 .PHONY: run
 run: compile
