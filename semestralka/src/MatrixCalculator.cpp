@@ -36,11 +36,11 @@ void MatrixCalculator::runApplication() {
     showFarewall();
 }
 
-void MatrixCalculator::showGreeting() {
+void MatrixCalculator::showGreeting() const {
     m_console.showText("Hello!\n");
     m_console.showText("Available commands you can get using \"help\"\n");
 }
 
-void MatrixCalculator::showFarewall() {
+void MatrixCalculator::showFarewall() const {
     m_console.showText("Goodbye!\n");
 }

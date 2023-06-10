@@ -17,9 +17,9 @@ class MatrixCalculator {
     /** @var use console user-interface */
     ConsoleUI m_console;
     /** Method to show greeting message */
-    void showGreeting();
+    void showGreeting() const;
     /** Method to show farewall message */
-    void showFarewall();
+    void showFarewall() const;
 public:
     /** Method to start the application */
     void runApplication();
