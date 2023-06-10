@@ -20,7 +20,7 @@ public:
      * Overridden matrix that executes addition operation
      * @return matrix values after addition operaation
      */
-    std::vector <std::vector <double>> execute() override;
+    std::vector <std::vector <double>> execute() const override;
 };
 
 #endif //PA2_ADDITIONOPERATION_H
