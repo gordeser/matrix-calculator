@@ -39,6 +39,6 @@ std::string IdentityMatrix::print(const std::string &matrixName) const {
 
 std::string IdentityMatrix::printToFile(const std::string &matrixName) const {
     std::ostringstream result;
-    result << matrixName << " I " << m_rows;
+    result << matrixName << " I " << m_rows << " " << m_cols;
     return result.str();
 }

@@ -73,12 +73,13 @@ void TextExport::importData(const std::string &filename, MatrixStorage &storage)
                     double toInsert;
                     try {
                         toInsert = std::stod(values[cntElem]);
+                        matrix[i][j] = toInsert;
+                        cntElem++;
                     } catch (std::invalid_argument &e) {
                         throw ExporterException("Invalid values of matrix\n");
                     } catch (std::out_of_range &e) {
                         throw ExporterException("Matrix values are too large\n");
                     }
-                    matrix[i][j] = toInsert;
                 }
             }
 
