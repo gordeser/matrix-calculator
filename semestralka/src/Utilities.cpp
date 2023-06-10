@@ -10,11 +10,11 @@
 
 
 std::shared_ptr<Matrix> Utilities::createMatrix(const std::vector<std::vector<double>> &elements) const {
-    size_t countZero = 0;
     size_t rows = elements.size();
     size_t cols = elements[0].size();
     bool isIdentity = true;
 
+    // if numRows and numCols are equal and elements on diagonal are 1 and others are 0, then it is identity matrix
     if (rows == cols) {
         for (size_t i = 0; i < elements.size(); ++i)
             for (size_t j = 0; j < cols; ++j)
@@ -28,10 +28,13 @@ std::shared_ptr<Matrix> Utilities::createMatrix(const std::vector<std::vector<do
     if (isIdentity)
         return std::make_shared<IdentityMatrix>(rows, cols);
 
+    size_t countZero = 0;
+    // count zeros
     for (size_t i = 0; i < rows; ++i)
         for (size_t j = 0; j < cols; ++j)
             if (elements[i][j] == 0) countZero++;
 
+    // if there are more than 50% of zeros then make sparseMatrix else DenseMatrix
     if ((rows * cols)/2 < countZero) {
         std::map<std::pair<size_t, size_t>, double> sparseElements;
         for (size_t i = 0; i < rows; ++i)
@@ -93,9 +96,11 @@ bool Utilities::checkName(const std::string &name) const {
                                                Commands::EXPORT, Commands::EXPORTALL, Commands::PRINT, Commands::PRINTALL,
                                                Commands::HELP, Commands::EXIT, Commands::QUIT};
 
+    // if name is one of reservedNames
     if (std::find(reservedNames.begin(), reservedNames.end(), modified) != reservedNames.end())
         return false;
 
+    // if first symbol is digit
     if (std::isdigit(modified[0]))
         return false;
 

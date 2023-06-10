@@ -7,8 +7,10 @@
 SparseMatrix::SparseMatrix(size_t numRows, size_t numCols, std::map <std::pair<size_t, size_t>, double> data) : Matrix(numRows, numCols), m_data(data) {}
 
 double SparseMatrix::getVal(size_t row, size_t col) const {
+    // if there is row col in data, then it has some value
     if (m_data.find(std::make_pair(row, col)) != m_data.end())
         return m_data.at(std::make_pair(row, col));
+    // else 0
     return 0;
 }
 

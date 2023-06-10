@@ -22,7 +22,7 @@ size_t Matrix::rank() const {
     auto gemmedMatrix = std::make_shared<GaussEliminationOperation>(clone())->execute();
     size_t rank = 0;
 
-    // rank = count of non-zero rows
+    // rank = count of non-zero rows after GEM
     for (size_t i = 0; i < m_rows; ++i) {
         bool isZero = true;
         for (size_t j = 0; j < m_cols; ++j)
@@ -54,6 +54,7 @@ double Matrix::countDeterminant(std::vector<std::vector<double>> matrix, size_t 
     double result = 0;
     std::vector <std::vector <double>> submatrix(size, std::vector <double> (size));
 
+    // calculate recursively determinant
     for (size_t x = 0; x < size; ++x) {
         size_t subi = 0;
         for (size_t i = 1; i < size; ++i) {

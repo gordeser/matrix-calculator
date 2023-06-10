@@ -36,6 +36,7 @@ void TextExport::importData(const std::string &filename, MatrixStorage &storage)
             throw ExporterException("Cannot read from the file\n");
 
         auto tokens = m_utilities.tokeniseInput(input);
+        // if there is no one of {name, type, rows, cols}
         if (tokens.size() < 4)
             throw ExporterException("Invalid file's content\n");
 
@@ -63,6 +64,7 @@ void TextExport::importData(const std::string &filename, MatrixStorage &storage)
         } catch (std::out_of_range &e) {
             throw ExporterException("Columns number is too large\n");
         }
+
         std::vector <std::string> values(tokens.begin()+4, tokens.end());
         std::vector <std::vector <double>> matrix(numRows, std::vector<double>(numCols, 0));
 
@@ -95,6 +97,7 @@ void TextExport::importData(const std::string &filename, MatrixStorage &storage)
                 throw ExporterException("Invalid values of sparse matrix\n");
 
             for (size_t k = 0; k < values.size(); k += 3) {
+                // read triple {row, col, value}
                 size_t first;
                 size_t second;
                 double third;

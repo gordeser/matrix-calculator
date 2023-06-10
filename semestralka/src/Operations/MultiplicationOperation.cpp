@@ -16,9 +16,8 @@ std::vector <std::vector <double>> MultiplicationOperation::execute() const {
     for (size_t i = 0; i < m_lhs->numRows(); ++i) {
         for (size_t j = 0; j < m_rhs->numCols(); ++j) {
             double sum = 0;
-            for (size_t k = 0; k < m_lhs->numCols(); ++k)
+            for (size_t k = 0; k < m_lhs->numCols(); ++k) // count sums of columns
                 sum += m_lhs->getVal(i, k) * m_rhs->getVal(k, j);
-
             result[i][j] = sum;
         }
     }
