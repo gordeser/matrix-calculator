@@ -25,7 +25,7 @@ std::shared_ptr<Matrix> MatrixStorage::getMatrix(const std::string &name) const 
     return m_data.at(name);
 }
 
-std::vector <std::string> MatrixStorage::getAllMatrices() {
+std::vector <std::string> MatrixStorage::getAllMatrices() const {
     std::vector <std::string> names;
 
     if (m_data.size() == 0)

@@ -37,7 +37,7 @@ public:
      * Method to get all matrix names in database, throws StorageException if there is no matrices in database
      * @return vector of matrices' names
      */
-    std::vector <std::string> getAllMatrices();
+    std::vector <std::string> getAllMatrices() const;
 };
 
 #endif //PA2_MATRIXSTORAGE_H
