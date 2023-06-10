@@ -19,7 +19,7 @@ public:
      * @param names vector of matrices to export
      * @param storage to export from
      */
-    void exportData(const std::string &filename, const std::vector <std::string> &names, const MatrixStorage &storage) override;
+    void exportData(const std::string &filename, const std::vector <std::string> &names, const MatrixStorage &storage) const override;
     /**
      * Overridden method that imports matrices from file in text way
      * @param filename to import matrices from

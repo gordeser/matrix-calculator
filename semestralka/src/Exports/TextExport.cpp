@@ -7,7 +7,7 @@
 #include "../Exceptions/ExporterException.h"
 
 
-void TextExport::exportData(const std::string &filename, const std::vector<std::string> &names, const MatrixStorage &storage) {
+void TextExport::exportData(const std::string &filename, const std::vector<std::string> &names, const MatrixStorage &storage) const {
     std::ofstream outputFile("export/" + filename);
     if (!outputFile.is_open())
         throw ExporterException("Cannot open the file\n");

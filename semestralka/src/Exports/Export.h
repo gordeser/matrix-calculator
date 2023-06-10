@@ -20,7 +20,7 @@ public:
      * @param names vector of matrices to export
      * @param storage to export from
      */
-    virtual void exportData(const std::string &filename, const std::vector <std::string> &names, const MatrixStorage &storage) = 0;
+    virtual void exportData(const std::string &filename, const std::vector <std::string> &names, const MatrixStorage &storage) const = 0;
     /**
      * Virtaul method that imports matrices from file
      * @param filename to import matrices from
