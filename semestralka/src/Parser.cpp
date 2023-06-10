@@ -124,23 +124,16 @@ void Parser::parseInput(std::string input) {
         std::vector <std::string> operations(tokens.begin()+2, tokens.end());
 
         auto matrix = executeOperations(operations);
-        if (matrix != nullptr) {
-            m_storage.addMatrix(name, matrix);
-            return;
-        } else
-            throw ParserException("Unknown command. Try \"help\"\n");
+        m_storage.addMatrix(name, matrix);
+        return;
     } else {
         auto matrix = executeOperations(tokens);
-
-        if (matrix != nullptr) {
-            m_console.showText(matrix->print(""));
-            return;
-        } else
-            throw ParserException("Unknown command. Try \"help\"\n");
+        m_console.showText(matrix->print(""));
+        return;
     }
 }
 
-std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elements) {
+std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elements) const {
     std::string operationName = elements[0];
     std::shared_ptr <Operation> operation;
 
@@ -342,7 +335,7 @@ std::shared_ptr<Matrix> Parser::executeOperations(std::vector<std::string> &elem
     throw ParserException("There is an error in operations\n");
 }
 
-void Parser::printHelp() {
+void Parser::printHelp() const {
     m_console.showText("\nAll matrices and commands names are case-insensitive\n");
     m_console.showText("Matrix names have to contain ONLY alphabetic characters and numbers\n");
     m_console.showText("Matrix names cannot be the same as matrix operations' names\n\n");
@@ -381,12 +374,12 @@ void Parser::printHelp() {
     m_console.showText("- GEM A - Reduce the matrix A to reduced row echelon form\n");
 }
 
-void Parser::printElements(const std::vector<std::string> &elements) {
+void Parser::printElements(const std::vector<std::string> &elements) const {
     for (const auto &elem : elements)
         m_console.showText(m_storage.getMatrix(elem)->print(elem));
 }
 
-void Parser::printAllElements() {
+void Parser::printAllElements() const {
     auto allNames = m_storage.getAllMatrices();
     for (const auto &name : allNames) {
         m_console.showText(m_storage.getMatrix(name)->print(name));
@@ -394,11 +387,11 @@ void Parser::printAllElements() {
     }
 }
 
-void Parser::exportElements(const std::string &filename, const std::vector<std::string> &elements) {
+void Parser::exportElements(const std::string &filename, const std::vector<std::string> &elements) const {
     m_textexport.exportData(filename, elements, m_storage);
 }
 
-void Parser::exportAllElements(const std::string &filename) {
+void Parser::exportAllElements(const std::string &filename) const {
     auto allNames = m_storage.getAllMatrices();
     m_textexport.exportData(filename, allNames, m_storage);
 }
@@ -445,7 +438,7 @@ void Parser::scanElements(const std::string &name) {
     m_storage.addMatrix(name, matrix);
 }
 
-void Parser::printDet(const std::vector<std::string> &elements) {
+void Parser::printDet(const std::vector<std::string> &elements) const {
     for (const auto &elem : elements) {
         double det = m_storage.getMatrix(elem)->determinant();
         std::ostringstream ss;
@@ -454,7 +447,7 @@ void Parser::printDet(const std::vector<std::string> &elements) {
     }
 }
 
-void Parser::printRank(const std::vector<std::string> &elements) {
+void Parser::printRank(const std::vector<std::string> &elements) const {
     for (const auto &elem : elements) {
         size_t rank = m_storage.getMatrix(elem)->rank();
         std::ostringstream ss;

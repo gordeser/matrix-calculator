@@ -26,27 +26,27 @@ class Parser {
      * @param operations that need to be executed
      * @return shared smart-pointer to the matrix after executed operations
      */
-    std::shared_ptr<Matrix> executeOperations(std::vector <std::string> &operations);
+    std::shared_ptr<Matrix> executeOperations(std::vector <std::string> &operations) const;
     /** Method that prints help message */
-    void printHelp();
+    void printHelp() const;
     /**
      * Method that prints given elements
      * @param elements vector to print
      */
-    void printElements(const std::vector <std::string> &elements);
+    void printElements(const std::vector <std::string> &elements) const;
     /** Method that prints all elements in database */
-    void printAllElements();
+    void printAllElements() const;
     /**
      * Method that exports given elements into file
      * @param filename in that export elements
      * @param elements vector to export
      */
-    void exportElements(const std::string &filename, const std::vector <std::string> &elements);
+    void exportElements(const std::string &filename, const std::vector <std::string> &elements) const;
     /**
      * Method to export all elements in database into file
      * @param filename in that export elemnts
      */
-    void exportAllElements(const std::string &filename);
+    void exportAllElements(const std::string &filename) const;
     /**
      * Method that deletes given elements from database
      * @param elements to delete
@@ -70,12 +70,12 @@ class Parser {
      * Method that prints determinants of given matrices
      * @param elements vector to print their determinants
      */
-    void printDet(const std::vector <std::string> &elements);
+    void printDet(const std::vector <std::string> &elements) const;
     /**
      * Method that prints ranks of given matrices
      * @param elements vector to print their ranks
      */
-    void printRank(const std::vector <std::string> &elements);
+    void printRank(const std::vector <std::string> &elements) const;
 public:
     /**
      * Method that parses user's input
