@@ -1,0 +1,80 @@
+scan x
+3 3
+1 3 -5
+0 1 2
+0 0 1
+
+inv x
+
+scan y
+4 4
+0 4 10 1
+4 8 18 7
+10 18 40 17
+1 7 17 3
+
+rank y
+tmp = gem y
+print tmp
+
+scan z
+3 3
+7 4 9
+0 6 -3
+4 -10 -4
+
+det z
+
+new = add x z
+print new
+
+mul 3 new
+
+matrix = mul x z
+print matrix
+
+scan t
+4 4
+1 2 3 4
+5 6 7 8
+9 10 11 12
+13 14 15 16
+
+some = sub t y
+print some
+
+onemore = trans exp some 2
+
+add onemore add onemore y
+
+add t gem onemore
+
+scan test
+3 4
+1 2 3 4
+5 6 7 8
+9 10 11 12
+
+scan k
+3 3
+9 8 7
+6 5 4
+-1 -2 -3
+
+scan totest
+3 7
+-1 -2 -3 -4 -5 -6 -7
+1 2 3 4 5 6 7
+100 200 300 400 500 600 700
+
+toprint = joindown totest joinright test k
+print toprint
+
+trim toprint 4 3 1 2
+
+add x add x add z sub x mul 3 z
+
+exportall operations.out
+
+delall
+printall

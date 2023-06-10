@@ -1,0 +1,42 @@
+scan x
+3 3
+1 2 3
+4 5 6
+7 8 9
+
+scan y
+3 4
+1 2 3 4
+5 6 7 8
+9 10 11 12
+
+add x y
+
+sub x y
+
+mul y x
+
+det y
+
+export test
+
+inv x
+
+exp x x
+
+trim x 2 2 2 2
+
+joindown x y
+
+scan z
+4 3
+1 2 3
+4 5 6
+7 8 9
+10 11 12
+
+joinright z x
+
+add x x x
+
+add x add x sub x sub x x x

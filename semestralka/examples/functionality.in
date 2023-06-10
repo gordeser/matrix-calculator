@@ -1,0 +1,58 @@
+scan x
+3 3
+1 2 3
+4 5 6
+7 8 9
+
+printall
+
+scan y
+4 3
+1 2 3
+4 5 6
+7 8 9
+10 11 12
+
+print x y
+exportall functionality.out
+delall
+
+import functionality.out
+
+printall
+del x
+printall
+
+scan x
+3 3
+1 2 3
+0 0 0
+0 0 0
+
+scan y
+3 3
+10 11 12
+13 14 15
+200 300 400
+
+scan z
+3 3
+1 0 0
+0 1 0
+0 0 1
+
+export functionality.out x y z
+
+del x y z
+
+import functionality.out
+
+printall
+
+exportall functionality.out
+
+delall
+
+printall
+
+exit
