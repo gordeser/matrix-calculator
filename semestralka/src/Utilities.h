@@ -17,27 +17,27 @@ public:
      * @param elements from which matrix will be created
      * @return shared smart-pointer on created matrix
      */
-    std::shared_ptr<Matrix> createMatrix(const std::vector<std::vector <double>> &elements);
+    std::shared_ptr<Matrix> createMatrix(const std::vector<std::vector <double>> &elements) const;
     /**
      * Method that tokenise given input by space
      * @param input to tokenise
      * @return vector of tokens
      */
-    std::vector <std::string> tokeniseInput(const std::string &input);
+    std::vector <std::string> tokeniseInput(const std::string &input) const;
     /**
      * Method that deletes unnecessary spaces
      * (more than one space between words and spaces before and after all words)
      * @param str string to modify
      * @return modified string
      */
-    std::string deleteSpaces(const std::string &str);
+    std::string deleteSpaces(const std::string &str) const;
     /**
      * Method that checks if given name of matrix is allowed
      * (is not one of reserved names and do not contain bad symbols)
      * @param name of matrix
      * @return true if name is allowed, false if name is not allowed
      */
-    bool checkName(const std::string &name);
+    bool checkName(const std::string &name) const;
 };
 
 

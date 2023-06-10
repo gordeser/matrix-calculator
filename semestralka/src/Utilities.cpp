@@ -9,7 +9,7 @@
 #include <algorithm>
 
 
-std::shared_ptr<Matrix> Utilities::createMatrix(const std::vector<std::vector<double>> &elements) {
+std::shared_ptr<Matrix> Utilities::createMatrix(const std::vector<std::vector<double>> &elements) const {
     size_t countZero = 0;
     size_t rows = elements.size();
     size_t cols = elements[0].size();
@@ -45,7 +45,7 @@ std::shared_ptr<Matrix> Utilities::createMatrix(const std::vector<std::vector<do
     return std::make_shared<DenseMatrix>(rows, cols, elements);
 }
 
-std::vector<std::string> Utilities::tokeniseInput(const std::string &input) {
+std::vector<std::string> Utilities::tokeniseInput(const std::string &input) const {
     std::string modified = deleteSpaces(input);
     std::vector <std::string> result;
     std::istringstream iss(modified);
@@ -57,7 +57,7 @@ std::vector<std::string> Utilities::tokeniseInput(const std::string &input) {
     return result;
 }
 
-std::string Utilities::deleteSpaces(const std::string &str) {
+std::string Utilities::deleteSpaces(const std::string &str) const {
     std::string modified = str;
 
     // delete all spaces before all words
@@ -80,7 +80,7 @@ std::string Utilities::deleteSpaces(const std::string &str) {
     return modified;
 }
 
-bool Utilities::checkName(const std::string &name) {
+bool Utilities::checkName(const std::string &name) const {
     if (name.empty()) return false;
 
     std::string modified = name;
