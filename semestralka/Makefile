@@ -3,6 +3,7 @@ CXXFLAGS = -Wall -pedantic -std=c++17
 
 TARGET = gordeser
 BUILD_DIR = build
+EXPORT_DIR = export
 
 HEADERS = $(wildcard src/*.h src/*/*.h) # finding files using template
 SOURCES = $(wildcard src/*.cpp src/*/*.cpp)
@@ -18,6 +19,7 @@ run: compile
 
 .PHONY: compile
 compile: $(TARGET)
+	mkdir -p $(EXPORT_DIR)
 
 $(TARGET): $(BUILD_DIR)/main
 	cp $< $@  # copy file BUILD_DIR/main into TARGET
@@ -35,7 +37,7 @@ doc: Doxyfile $(HEADERS)
 
 .PHONY: clean
 clean:
-	rm -rf $(TARGET) $(BUILD_DIR)/ doc/ 2>/dev/null
+	rm -rf $(TARGET) $(BUILD_DIR)/ doc/ export/ 2>/dev/null
 
 
 
