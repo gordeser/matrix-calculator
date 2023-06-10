@@ -9,10 +9,20 @@
 #include <string>
 
 
+/** @class to handle all exceptions in operation section */
 class OperationException : public std::exception {
+    /** @var description of error */
     std::string m_message;
 public:
+    /**
+     * Constructor
+     * @param message describes error
+     */
     OperationException(const std::string &message);
+    /**
+     * Method that returns text of error
+     * @return c-string that contains text of error
+     */
     virtual const char *what() const noexcept override;
 };
 
