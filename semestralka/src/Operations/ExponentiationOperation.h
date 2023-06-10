@@ -8,12 +8,24 @@
 #include "BinaryOperation.h"
 #include "../Utilities.h"
 
+/** @class inherits from class Operation to represent exponentiation operation */
 class ExponentiationOperation : public Operation {
+    /** @var to use createMatrix method */
     Utilities m_utilities;
 protected:
+    /** @var degree on right hand side */
     int m_rhs;
 public:
+    /**
+     * Constructor to set matrix and it's degree
+     * @param lhs matrix on left hand side
+     * @param rhs degree on right hand side
+     */
     ExponentiationOperation(const std::shared_ptr<Matrix> &lhs, int rhs);
+    /**
+     * Overridden method to execute exponentiation operation
+     * @return values of matrix after operation
+     */
     std::vector <std::vector <double>> execute() override;
 };
 
