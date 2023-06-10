@@ -8,9 +8,18 @@
 #include "UserInterface.h"
 
 
+/** @class inherits from class UserInterface to represent console user interface */
 class ConsoleUI : public UserInterface {
 public:
+    /**
+     * Overridden method to show text in console
+     * @param text to show
+     */
     void showText(const std::string &text) const override;
+    /**
+     * Overridden method to get input from user
+     * @return string input
+     */
     std::string getInput() override;
 };
 
