@@ -8,6 +8,7 @@
 #include "MatrixStorage.h"
 #include "UserInterfaces/ConsoleUI.h"
 #include "Utilities.h"
+#include "Executer.h"
 #include "Exports/TextExport.h"
 
 class Parser {
@@ -19,13 +20,8 @@ class Parser {
     Utilities m_utilities;
     /** @var to export some text */
     TextExport m_textexport;
+    Executer m_executer;
 
-    /**
-     * Method that execute given operations on matrices
-     * @param operations that need to be executed
-     * @return shared smart-pointer to the matrix after executed operations
-     */
-    std::shared_ptr<Matrix> executeOperations(std::vector <std::string> &operations) const;
     /** Method that prints help message */
     void printHelp() const;
     /**
