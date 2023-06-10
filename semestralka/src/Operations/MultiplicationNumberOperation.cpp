@@ -6,7 +6,7 @@
 
 MultiplicationNumberOperation::MultiplicationNumberOperation(const std::shared_ptr<Matrix> &lhs, double rhs) : Operation(lhs), m_rhs(rhs) {}
 
-std::vector<std::vector<double>> MultiplicationNumberOperation::execute() {
+std::vector<std::vector<double>> MultiplicationNumberOperation::execute() const {
     std::vector <std::vector <double>> result(m_lhs->numRows(), std::vector<double> (m_lhs->numCols(), 0));
     for (size_t i = 0; i < m_lhs->numRows(); ++i)
         for (size_t j = 0; j < m_lhs->numCols(); ++j)

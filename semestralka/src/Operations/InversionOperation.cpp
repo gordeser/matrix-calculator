@@ -9,22 +9,22 @@
 
 InversionOperation::InversionOperation(const std::shared_ptr<Matrix> &lhs) : Operation(lhs) {}
 
-void InversionOperation::swapRows(std::vector<std::vector<double>> &matrix, size_t firstRow, size_t secondRow) {
+void InversionOperation::swapRows(std::vector<std::vector<double>> &matrix, size_t firstRow, size_t secondRow) const {
     if (firstRow != secondRow)
         std::swap(matrix[firstRow], matrix[secondRow]);
 }
 
-void InversionOperation::scaleRow(std::vector<std::vector<double>> &matrix, size_t row, double number) {
+void InversionOperation::scaleRow(std::vector<std::vector<double>> &matrix, size_t row, double number) const {
     for (double &value : matrix[row])
         value *= number;
 }
 
-void InversionOperation::addScaledRow(std::vector<std::vector<double>> &matrix, size_t sourceRow, size_t targetRow, double number) {
+void InversionOperation::addScaledRow(std::vector<std::vector<double>> &matrix, size_t sourceRow, size_t targetRow, double number) const {
     for (size_t i = 0; i < matrix[targetRow].size(); ++i)
         matrix[targetRow][i] += number * matrix[sourceRow][i];
 }
 
-void InversionOperation::inverse(std::vector<std::vector<double>> &matrix) {
+void InversionOperation::inverse(std::vector<std::vector<double>> &matrix) const {
     // apply GEM to convert A matrix in [A | I] to reduced row echelon form
     for (size_t row = 0; row < m_lhs->numRows(); ++row) {
         size_t pivotRow = row;
@@ -46,7 +46,7 @@ void InversionOperation::inverse(std::vector<std::vector<double>> &matrix) {
     }
 }
 
-std::vector<std::vector<double>> InversionOperation::execute() {
+std::vector<std::vector<double>> InversionOperation::execute() const {
     if (m_lhs->numRows() != m_lhs->numCols())
         throw OperationException("Matrix must be square");
 

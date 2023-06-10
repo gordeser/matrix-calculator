@@ -19,7 +19,7 @@ public:
      * Overridden method to execute transpose operation
      * @return values of matrix after operation
      */
-    std::vector <std::vector <double>> execute() override;
+    std::vector <std::vector <double>> execute() const override;
 };
 
 #endif //PA2_TRANSPOSEOPERATION_H

@@ -8,7 +8,7 @@
 
 ExponentiationOperation::ExponentiationOperation(const std::shared_ptr<Matrix> &lhs, int rhs): Operation(lhs), m_rhs(rhs) {}
 
-std::vector <std::vector <double>> ExponentiationOperation::execute() {
+std::vector <std::vector <double>> ExponentiationOperation::execute() const {
     if (m_lhs->numRows() != m_lhs->numCols())
         throw OperationException("Matrix must be square\n");
 

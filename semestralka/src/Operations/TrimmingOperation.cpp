@@ -11,7 +11,7 @@ TrimmingOperation::TrimmingOperation(std::shared_ptr<Matrix> &lhs,
         : Operation(lhs), m_rows(rows), m_cols(cols),
           m_offsetRows(offsetRows), m_offsetCols(offsetCols) {}
 
-std::vector <std::vector <double>> TrimmingOperation::execute() {
+std::vector <std::vector <double>> TrimmingOperation::execute() const {
     if (m_rows + m_offsetRows > m_lhs->numRows())
         throw OperationException("Number of rows and rows offset are too large ");
 

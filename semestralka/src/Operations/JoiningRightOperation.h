@@ -20,7 +20,7 @@ public:
      * Overridden method to execute joining columns operation
      * @return values of matrix after operation
      */
-    std::vector <std::vector <double>> execute() override;
+    std::vector <std::vector <double>> execute() const override;
 };
 
 #endif //PA2_JOININGRIGHTOPERATION_H

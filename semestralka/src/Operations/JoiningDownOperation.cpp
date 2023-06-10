@@ -7,7 +7,7 @@
 
 JoiningDownOperation::JoiningDownOperation(const std::shared_ptr<Matrix> &lhs, const std::shared_ptr<Matrix> &rhs) : BinaryOperation(lhs, rhs) {}
 
-std::vector<std::vector<double>> JoiningDownOperation::execute() {
+std::vector<std::vector<double>> JoiningDownOperation::execute() const {
     if (m_lhs->numCols() != m_rhs->numCols())
         throw OperationException("Number of columns must be equal");
 

@@ -7,7 +7,7 @@
 
 SubtractionOperation::SubtractionOperation(const std::shared_ptr<Matrix> &lhs, const std::shared_ptr<Matrix> &rhs) : BinaryOperation(lhs, rhs){}
 
-std::vector <std::vector <double>> SubtractionOperation::execute() {
+std::vector <std::vector <double>> SubtractionOperation::execute() const {
     if (m_lhs->numRows() != m_rhs->numRows())
         throw OperationException("Number of rows must be equal\n");
 

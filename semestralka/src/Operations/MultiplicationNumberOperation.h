@@ -23,7 +23,7 @@ public:
      * Overridden method to execute multiplication by a number operation
      * @return values of matrix after operation
      */
-    std::vector <std::vector <double>> execute() override;
+    std::vector <std::vector <double>> execute() const override;
 };
 
 

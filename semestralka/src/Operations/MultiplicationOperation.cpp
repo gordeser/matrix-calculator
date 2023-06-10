@@ -7,7 +7,7 @@
 
 MultiplicationOperation::MultiplicationOperation(const std::shared_ptr<Matrix> &lhs, const std::shared_ptr<Matrix> &rhs) : BinaryOperation(lhs, rhs) {}
 
-std::vector <std::vector <double>> MultiplicationOperation::execute() {
+std::vector <std::vector <double>> MultiplicationOperation::execute() const {
     if (m_lhs->numCols() != m_rhs->numRows())
         throw OperationException("Number of first matrix columns must be equal to number of second matrix rows\n");
 

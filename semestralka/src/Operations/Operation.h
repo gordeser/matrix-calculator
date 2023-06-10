@@ -24,7 +24,7 @@ public:
      * Virtual method that executes operation
      * @return values of matrix after operation
      */
-    virtual std::vector <std::vector <double>> execute() = 0;
+    virtual std::vector <std::vector <double>> execute() const = 0;
 };
 
 

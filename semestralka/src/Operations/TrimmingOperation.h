@@ -32,7 +32,7 @@ public:
      * Overridden method to execute trimming operation
      * @return values of matrix after operation
      */
-    std::vector <std::vector <double>> execute();
+    std::vector <std::vector <double>> execute() const;
 };
 
 #endif //PA2_TRIMMINGOPERATION_H

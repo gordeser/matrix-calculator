@@ -6,22 +6,22 @@
 
 GaussEliminationOperation::GaussEliminationOperation(const std::shared_ptr<Matrix> &lhs) : Operation(lhs) {}
 
-void GaussEliminationOperation::swapRows(std::vector<std::vector<double>> &matrix, size_t firstRow, size_t secondRow) {
+void GaussEliminationOperation::swapRows(std::vector<std::vector<double>> &matrix, size_t firstRow, size_t secondRow) const {
     if (firstRow != secondRow)
         std::swap(matrix[firstRow], matrix[secondRow]);
 }
 
-void GaussEliminationOperation::scaleRow(std::vector<std::vector<double>> &matrix, size_t row, double number) {
+void GaussEliminationOperation::scaleRow(std::vector<std::vector<double>> &matrix, size_t row, double number) const {
     for (double &value : matrix[row])
         value *= number;
 }
 
-void GaussEliminationOperation::addScaledRow(std::vector<std::vector<double>> &matrix, size_t sourceRow, size_t targetRow, double number) {
+void GaussEliminationOperation::addScaledRow(std::vector<std::vector<double>> &matrix, size_t sourceRow, size_t targetRow, double number) const {
     for (size_t i = 0; i < matrix[targetRow].size(); ++i)
         matrix[targetRow][i] += number * matrix[sourceRow][i];
 }
 
-void GaussEliminationOperation::reduceRowEchelon(std::vector<std::vector<double>> &matrix) {
+void GaussEliminationOperation::reduceRowEchelon(std::vector<std::vector<double>> &matrix) const {
     size_t leadColumn = 0;
     for (size_t row = 0; row < m_lhs->numRows(); ++row) {
         if (leadColumn >= m_lhs->numCols())
@@ -54,7 +54,7 @@ void GaussEliminationOperation::reduceRowEchelon(std::vector<std::vector<double>
     }
 }
 
-std::vector<std::vector<double>> GaussEliminationOperation::execute() {
+std::vector<std::vector<double>> GaussEliminationOperation::execute() const {
     std::vector <std::vector <double>> result(m_lhs->numRows(), std::vector<double> (m_lhs->numCols(), 0));
 
     for (size_t i = 0; i < m_lhs->numRows(); ++i)
