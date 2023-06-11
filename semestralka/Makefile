@@ -19,6 +19,7 @@ run: compile
 .PHONY: compile
 compile: $(TARGET)
 	mkdir -p $(EXPORT_DIR)
+	cp examples/example.out $(EXPORT_DIR)
 
 $(TARGET): $(BUILD_DIR)/main
 	# copy file BUILD_DIR/main into TARGET
