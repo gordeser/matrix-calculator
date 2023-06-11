@@ -11,8 +11,6 @@
 #include "MatrixStorage.h"
 
 class Executer {
-    /** @var use createMatrix */
-    Utilities m_utilities;
 public:
     /**
      * Method that execute given operations on matrices
@@ -21,7 +19,7 @@ public:
      * @return shared smart-pointer to the matrix after executed operations
      * @throw ExecuterException if operation could not be executed (due invalid order)
      */
-    std::shared_ptr<Matrix> executeOperations(std::vector<std::string> &elements, const MatrixStorage &storage) const;
+    std::shared_ptr<Matrix> executeOperations(const std::vector<std::string> &elements, const MatrixStorage &storage) const;
 };
 
 

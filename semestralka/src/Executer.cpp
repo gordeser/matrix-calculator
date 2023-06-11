@@ -18,7 +18,7 @@
 #include "Operations/JoiningDownOperation.h"
 #include "Operations/TrimmingOperation.h"
 
-std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &elements, const MatrixStorage &storage) const {
+std::shared_ptr<Matrix> Executer::executeOperations(const std::vector<std::string> &elements, const MatrixStorage &storage) const {
     std::string operationName = elements[0];
     std::unique_ptr <Operation> operation;
 
@@ -37,7 +37,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             matrixOperand = storage.getMatrix(operands[0]);
 
         operation = std::make_unique<TransposeOperation>(matrixOperand);
-        auto result = m_utilities.createMatrix(operation->execute());
+        auto result = Utilities::createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::INV) {
         // if there is no arguments
@@ -54,7 +54,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             matrixOperand = storage.getMatrix(operands[0]);
 
         operation = std::make_unique<InversionOperation>(matrixOperand);
-        auto result = m_utilities.createMatrix(operation->execute());
+        auto result = Utilities::createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::GEM) {
         // if there is no arguments
@@ -71,7 +71,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             matrixOperand = storage.getMatrix(operands[0]);
 
         operation = std::make_unique<GaussEliminationOperation>(matrixOperand);
-        auto result = m_utilities.createMatrix(operation->execute());
+        auto result = Utilities::createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::ADD) {
         // if there are less than 2 arguments
@@ -89,7 +89,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             secondMatrixOperand = storage.getMatrix(nextOperands[0]);
 
         operation = std::make_unique<AdditionOperation>(firstMatrixOperand, secondMatrixOperand);
-        auto result = m_utilities.createMatrix(operation->execute());
+        auto result = Utilities::createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::SUB) {
         // if there are less than 2 arguments
@@ -106,7 +106,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             secondMatrixOperand = storage.getMatrix(nextOperands[0]);
 
         operation = std::make_unique<SubtractionOperation>(firstMatrixOperand, secondMatrixOperand);
-        auto result = m_utilities.createMatrix(operation->execute());
+        auto result = Utilities::createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::MUL) {
         // if there are less than 2 arguments
@@ -141,7 +141,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             throw ExecuterException("Numbers are too large\n");
         }
 
-        auto result = m_utilities.createMatrix(operation->execute());
+        auto result = Utilities::createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::JOINRIGHT) {
         // if there are less than 2 arguments
@@ -159,7 +159,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             secondOperand = storage.getMatrix(nextOperands[0]);
 
         operation = std::make_unique<JoiningRightOperation>(firstOperand, secondOperand);
-        auto result = m_utilities.createMatrix(operation->execute());
+        auto result = Utilities::createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::JOINDOWN) {
         // if there are less than 2 arguments
@@ -177,7 +177,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             secondOperand = storage.getMatrix(nextOperands[0]);
 
         operation = std::make_unique<JoiningDownOperation>(firstOperand, secondOperand);
-        auto result = m_utilities.createMatrix(operation->execute());
+        auto result = Utilities::createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::TRIM) {
         // if there are less than 6 arguments
@@ -206,7 +206,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             matrixOperand = storage.getMatrix(nextOperands[0]);
 
         operation = std::make_unique<TrimmingOperation>(matrixOperand, numRows, numCols, offsetRows, offsetCols);
-        auto result = m_utilities.createMatrix(operation->execute());
+        auto result = Utilities::createMatrix(operation->execute());
         return result;
     } else if (operationName == Commands::EXP) {
         // if there are less than 2 arguments
@@ -232,7 +232,7 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
             matrixOperand = storage.getMatrix(nextOperands[0]);
 
         operation = std::make_unique<ExponentiationOperation>(matrixOperand, numOperand);
-        auto result = m_utilities.createMatrix(operation->execute());
+        auto result = Utilities::createMatrix(operation->execute());
         return result;
     }
     throw ExecuterException("Unknown operation. Try input \"HELP\"\n");
