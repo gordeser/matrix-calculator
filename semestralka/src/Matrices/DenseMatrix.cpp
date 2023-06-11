@@ -4,10 +4,16 @@
 
 #include <iomanip>
 #include "DenseMatrix.h"
+#include "../Exceptions/MatrixException.h"
 
 DenseMatrix::DenseMatrix(size_t numRows, size_t numCols, std::vector<std::vector <double>> data) : Matrix(numRows, numCols), m_data(data) {}
 
 double DenseMatrix::getVal(size_t row, size_t col) const {
+    if (row >= numRows())
+        throw MatrixException("Row must be less than numRows of matrix");
+    if (col >= numCols())
+        throw MatrixException("Column must be less than numCols of matrix");
+
     return m_data[row][col];
 }
 

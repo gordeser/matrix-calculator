@@ -23,6 +23,7 @@ public:
      * @param row of value
      * @param col of value
      * @return value of matrix
+     * @throw MatrixException if row or col is bigger than numRows or numCols
      */
     double getVal(size_t row, size_t col) const override;
     /**
