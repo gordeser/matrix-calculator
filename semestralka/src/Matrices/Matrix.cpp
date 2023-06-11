@@ -47,7 +47,7 @@ double Matrix::determinant() const {
 }
 
 // taken from https://www.tutorialspoint.com/cplusplus-program-to-compute-determinant-of-a-matrix
-double Matrix::countDeterminant(std::vector<std::vector<double>> matrix, size_t size) const {
+double Matrix::countDeterminant(const std::vector<std::vector<double>> &matrix, size_t size) const {
     if (size == 1) return matrix[0][0];
     if (size == 2) return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
 

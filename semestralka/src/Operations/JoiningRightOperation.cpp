@@ -5,7 +5,7 @@
 #include "JoiningRightOperation.h"
 #include "../Exceptions/OperationException.h"
 
-JoiningRightOperation::JoiningRightOperation(const std::shared_ptr<Matrix> &lhs, const std::shared_ptr<Matrix> &rhs) : BinaryOperation(lhs, rhs) {}
+JoiningRightOperation::JoiningRightOperation(std::shared_ptr<Matrix> lhs, std::shared_ptr<Matrix> rhs) : BinaryOperation(std::move(lhs), std::move(rhs)) {}
 
 std::vector<std::vector<double>> JoiningRightOperation::execute() const {
     if (m_lhs->numRows() != m_rhs->numRows())

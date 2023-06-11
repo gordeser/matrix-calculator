@@ -4,7 +4,7 @@
 
 #include "MultiplicationNumberOperation.h"
 
-MultiplicationNumberOperation::MultiplicationNumberOperation(const std::shared_ptr<Matrix> &lhs, double rhs) : Operation(lhs), m_rhs(rhs) {}
+MultiplicationNumberOperation::MultiplicationNumberOperation(std::shared_ptr<Matrix> lhs, double rhs) : Operation(std::move(lhs)), m_rhs(rhs) {}
 
 std::vector<std::vector<double>> MultiplicationNumberOperation::execute() const {
     std::vector <std::vector <double>> result(m_lhs->numRows(), std::vector<double> (m_lhs->numCols(), 0));

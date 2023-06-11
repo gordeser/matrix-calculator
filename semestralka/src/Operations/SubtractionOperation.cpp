@@ -5,7 +5,7 @@
 #include "SubtractionOperation.h"
 #include "../Exceptions/OperationException.h"
 
-SubtractionOperation::SubtractionOperation(const std::shared_ptr<Matrix> &lhs, const std::shared_ptr<Matrix> &rhs) : BinaryOperation(lhs, rhs){}
+SubtractionOperation::SubtractionOperation(std::shared_ptr<Matrix> lhs, std::shared_ptr<Matrix> rhs) : BinaryOperation(std::move(lhs), std::move(rhs)) {}
 
 std::vector <std::vector <double>> SubtractionOperation::execute() const {
     if (m_lhs->numRows() != m_rhs->numRows())

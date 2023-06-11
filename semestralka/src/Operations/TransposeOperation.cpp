@@ -4,7 +4,7 @@
 
 #include "TransposeOperation.h"
 
-TransposeOperation::TransposeOperation(std::shared_ptr<Matrix> lhs) : Operation(lhs) {}
+TransposeOperation::TransposeOperation(std::shared_ptr<Matrix> lhs) : Operation(std::move(lhs)) {}
 
 std::vector <std::vector <double>> TransposeOperation::execute() const {
     std::vector <std::vector <double>> result(m_lhs->numCols(), std::vector<double> (m_lhs->numRows(), 0));

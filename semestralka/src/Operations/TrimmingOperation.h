@@ -26,13 +26,13 @@ public:
      * @param offsetRows
      * @param offsetCols
      */
-    TrimmingOperation(std::shared_ptr<Matrix> &lhs, size_t rows, size_t cols, size_t offsetRows, size_t offsetCols);
+    TrimmingOperation(std::shared_ptr<Matrix> lhs, size_t rows, size_t cols, size_t offsetRows, size_t offsetCols);
     /**
      * Overridden method to execute trimming operation
      * @return values of matrix after operation
      * @throw OperationException if number of rows and rows offset are too large, or number of columns and columns offset
      */
-    std::vector <std::vector <double>> execute() const;
+    std::vector <std::vector <double>> execute() const override;
 };
 
 #endif //PA2_TRIMMINGOPERATION_H

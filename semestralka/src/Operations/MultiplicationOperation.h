@@ -14,7 +14,7 @@ public:
      * @param lhs matrix on left hand side
      * @param rhs matrix on right hand side
      */
-    MultiplicationOperation(const std::shared_ptr <Matrix> &lhs, const std::shared_ptr <Matrix> &rhs);
+    MultiplicationOperation(std::shared_ptr <Matrix> lhs, std::shared_ptr <Matrix> rhs);
     /**
      * Overridden method to execute multiplication operation
      * @return values of matrix after operation

@@ -5,7 +5,7 @@
 #include "JoiningDownOperation.h"
 #include "../Exceptions/OperationException.h"
 
-JoiningDownOperation::JoiningDownOperation(const std::shared_ptr<Matrix> &lhs, const std::shared_ptr<Matrix> &rhs) : BinaryOperation(lhs, rhs) {}
+JoiningDownOperation::JoiningDownOperation(std::shared_ptr<Matrix> lhs, std::shared_ptr<Matrix> rhs) : BinaryOperation(std::move(lhs), std::move(rhs)) {}
 
 std::vector<std::vector<double>> JoiningDownOperation::execute() const {
     if (m_lhs->numCols() != m_rhs->numCols())

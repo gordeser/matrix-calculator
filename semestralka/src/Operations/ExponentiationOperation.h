@@ -9,8 +9,6 @@
 #include "../Utilities.h"
 
 class ExponentiationOperation : public Operation {
-    /** @var to use createMatrix method */
-    Utilities m_utilities;
 protected:
     /** @var degree on right hand side */
     int m_rhs;
@@ -20,7 +18,7 @@ public:
      * @param lhs matrix on left hand side
      * @param rhs degree on right hand side
      */
-    ExponentiationOperation(const std::shared_ptr<Matrix> &lhs, int rhs);
+    ExponentiationOperation(std::shared_ptr<Matrix> lhs, int rhs);
     /**
      * Overridden method to execute exponentiation operation
      * @return values of matrix after operation

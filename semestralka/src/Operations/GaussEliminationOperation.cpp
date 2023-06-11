@@ -4,22 +4,7 @@
 
 #include "GaussEliminationOperation.h"
 
-GaussEliminationOperation::GaussEliminationOperation(const std::shared_ptr<Matrix> &lhs) : Operation(lhs) {}
-
-void GaussEliminationOperation::swapRows(std::vector<std::vector<double>> &matrix, size_t firstRow, size_t secondRow) const {
-    if (firstRow != secondRow)
-        std::swap(matrix[firstRow], matrix[secondRow]);
-}
-
-void GaussEliminationOperation::scaleRow(std::vector<std::vector<double>> &matrix, size_t row, double number) const {
-    for (double &value : matrix[row])
-        value *= number;
-}
-
-void GaussEliminationOperation::addScaledRow(std::vector<std::vector<double>> &matrix, size_t sourceRow, size_t targetRow, double number) const {
-    for (size_t i = 0; i < matrix[targetRow].size(); ++i)
-        matrix[targetRow][i] += number * matrix[sourceRow][i];
-}
+GaussEliminationOperation::GaussEliminationOperation(std::shared_ptr<Matrix> lhs) : Operation(std::move(lhs)) {}
 
 void GaussEliminationOperation::reduceRowEchelon(std::vector<std::vector<double>> &matrix) const {
     size_t leadColumn = 0;
@@ -39,16 +24,16 @@ void GaussEliminationOperation::reduceRowEchelon(std::vector<std::vector<double>
         }
 
         // swap the current row with the row containing the pivot element
-        swapRows(matrix, i, row);
+        Utilities::swapRows(matrix, i, row);
 
         // scale the pivot row so that the pivot element becomes 1
-        scaleRow(matrix, row, 1.0 / matrix[row][leadColumn]);
+        Utilities::scaleRow(matrix, row, 1.0 / matrix[row][leadColumn]);
 
         // perform row operations to eliminate other elements in the column
         for (size_t j = 0; j < m_lhs->numRows(); ++j)
             if (j != row)
                 // add a scaled pivot row to eliminate the element in the current row
-                addScaledRow(matrix, row, j, -matrix[j][leadColumn]);
+                Utilities::addScaledRow(matrix, row, j, -matrix[j][leadColumn]);
 
         ++leadColumn;  // move to the next column
     }

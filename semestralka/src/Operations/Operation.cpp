@@ -4,4 +4,4 @@
 
 #include "Operation.h"
 
-Operation::Operation(std::shared_ptr<Matrix> lhs) : m_lhs(lhs) {}
+Operation::Operation(std::shared_ptr<Matrix> lhs) : m_lhs(std::move(lhs)) {}

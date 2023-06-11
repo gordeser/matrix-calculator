@@ -5,7 +5,7 @@
 #include "MultiplicationOperation.h"
 #include "../Exceptions/OperationException.h"
 
-MultiplicationOperation::MultiplicationOperation(const std::shared_ptr<Matrix> &lhs, const std::shared_ptr<Matrix> &rhs) : BinaryOperation(lhs, rhs) {}
+MultiplicationOperation::MultiplicationOperation(std::shared_ptr<Matrix> lhs, std::shared_ptr<Matrix> rhs) : BinaryOperation(std::move(lhs), std::move(rhs)) {}
 
 std::vector <std::vector <double>> MultiplicationOperation::execute() const {
     if (m_lhs->numCols() != m_rhs->numRows())

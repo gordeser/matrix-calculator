@@ -24,7 +24,7 @@ std::shared_ptr<Matrix> IdentityMatrix::clone() const {
 
 std::string IdentityMatrix::print(const std::string &matrixName) const {
     std::ostringstream result;
-    result << (matrixName != "" ? "[" + matrixName + "] " : "");
+    result << (!matrixName.empty() ? "[" + matrixName + "] " : "");
     result << "Identity Matrix (" << m_rows << ":" << m_cols << ")\n";
     for (size_t i = 0; i < m_rows; ++i) {
         result << "| ";

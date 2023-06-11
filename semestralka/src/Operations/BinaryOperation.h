@@ -18,11 +18,6 @@ public:
      * @param rhs right hand side matrix
      */
     BinaryOperation(std::shared_ptr <Matrix> lhs, std::shared_ptr <Matrix> rhs);
-    /**
-     * Virtual method that executes operation
-     * @return values of matrix after operation
-     */
-    virtual std::vector <std::vector <double>> execute() const = 0;
 };
 
 

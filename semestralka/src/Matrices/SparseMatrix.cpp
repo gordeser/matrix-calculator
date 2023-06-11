@@ -6,7 +6,7 @@
 #include "SparseMatrix.h"
 #include "../Exceptions/MatrixException.h"
 
-SparseMatrix::SparseMatrix(size_t numRows, size_t numCols, std::map <std::pair<size_t, size_t>, double> data) : Matrix(numRows, numCols), m_data(data) {}
+SparseMatrix::SparseMatrix(size_t numRows, size_t numCols, std::map <std::pair<size_t, size_t>, double> data) : Matrix(numRows, numCols), m_data(std::move(data)) {}
 
 double SparseMatrix::getVal(size_t row, size_t col) const {
     if (row >= numRows())
@@ -27,7 +27,7 @@ std::shared_ptr<Matrix> SparseMatrix::clone() const {
 
 std::string SparseMatrix::print(const std::string &matrixName) const {
     std::ostringstream result;
-    result << (matrixName != "" ? "[" + matrixName + "] " : "");
+    result << (!matrixName.empty() ? "[" + matrixName + "] " : "");
     result << "Sparse Matrix (" << m_rows << ":" << m_cols << ")\n";
     for (size_t i = 0; i < m_rows; ++i) {
         result << "| ";

@@ -16,9 +16,9 @@ public:
      * Constructor to set matrix on left hand side
      * @param lhs left hand side matrix
      */
-    Operation(std::shared_ptr<Matrix> lhs);
+    explicit Operation(std::shared_ptr<Matrix> lhs);
     /** Virtual destructor */
-    virtual ~Operation() {}
+    virtual ~Operation() = default;
     /**
      * Virtual method that executes operation
      * @return values of matrix after operation

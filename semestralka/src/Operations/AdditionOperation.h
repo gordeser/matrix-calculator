@@ -14,7 +14,7 @@ public:
      * @param lhs left hand side matrix
      * @param rhs right hand side matrix
      */
-    AdditionOperation(const std::shared_ptr <Matrix> &lhs, const std::shared_ptr <Matrix> &rhs);
+    AdditionOperation(std::shared_ptr <Matrix> lhs, std::shared_ptr <Matrix> rhs);
     /**
      * Overridden method that executes addition operation
      * @return matrix values after addition operation

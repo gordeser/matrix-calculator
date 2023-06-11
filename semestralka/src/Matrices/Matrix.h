@@ -19,7 +19,7 @@ class Matrix {
      * @param size of matrix (number of rows or columns)
      * @return determinant of matrix
      */
-    double countDeterminant(std::vector <std::vector <double>> matrix, size_t size) const;
+    double countDeterminant(const std::vector <std::vector <double>> &matrix, size_t size) const;
 protected:
     /** @var count of rows */
     size_t m_rows;
@@ -39,7 +39,7 @@ public:
      */
     Matrix(size_t numRows, size_t numCols);
     /** Virtual destructor */
-    virtual ~Matrix() {}
+    virtual ~Matrix() = default;
     /**
      * Method to get count of rows
      * @return count of rows

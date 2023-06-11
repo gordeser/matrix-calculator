@@ -13,7 +13,7 @@ public:
      * Constructor to set matrix
      * @param lhs matrix on left hand side
      */
-    TransposeOperation(std::shared_ptr <Matrix> lhs);
+    explicit TransposeOperation(std::shared_ptr <Matrix> lhs);
     /**
      * Overridden method to execute transpose operation
      * @return values of matrix after operation

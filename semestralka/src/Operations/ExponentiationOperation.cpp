@@ -6,7 +6,7 @@
 #include "MultiplicationOperation.h"
 #include "../Exceptions/OperationException.h"
 
-ExponentiationOperation::ExponentiationOperation(const std::shared_ptr<Matrix> &lhs, int rhs): Operation(lhs), m_rhs(rhs) {}
+ExponentiationOperation::ExponentiationOperation(std::shared_ptr<Matrix> lhs, int rhs): Operation(std::move(lhs)), m_rhs(rhs) {}
 
 std::vector <std::vector <double>> ExponentiationOperation::execute() const {
     if (m_lhs->numRows() != m_lhs->numCols())
@@ -17,6 +17,6 @@ std::vector <std::vector <double>> ExponentiationOperation::execute() const {
         result[i][i] = 1;
 
     for (int i = 0; i < m_rhs; ++i) // multiply identity matrix by lhs rhs times
-        result = MultiplicationOperation(m_utilities.createMatrix(result), m_lhs->clone()).execute();
+        result = MultiplicationOperation(Utilities::createMatrix(result), m_lhs->clone()).execute();
     return result;
 }

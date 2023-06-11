@@ -5,10 +5,10 @@
 #include "TrimmingOperation.h"
 #include "../Exceptions/OperationException.h"
 
-TrimmingOperation::TrimmingOperation(std::shared_ptr<Matrix> &lhs,
+TrimmingOperation::TrimmingOperation(std::shared_ptr<Matrix> lhs,
                                      size_t rows, size_t cols,
                                      size_t offsetRows, size_t offsetCols)
-        : Operation(lhs), m_rows(rows), m_cols(cols),
+        : Operation(std::move(lhs)), m_rows(rows), m_cols(cols),
           m_offsetRows(offsetRows), m_offsetCols(offsetCols) {}
 
 std::vector <std::vector <double>> TrimmingOperation::execute() const {
