@@ -10,7 +10,7 @@
 class UserInterface {
 public:
     /** Virtual destructor */
-    virtual ~UserInterface() {}
+    virtual ~UserInterface() = default;
     /**
      * Virtual method to show text
      * @param text to show
