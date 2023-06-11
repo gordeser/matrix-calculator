@@ -14,7 +14,6 @@ all: compile doc
 
 .PHONY: run
 run: compile
-	# will be run after successful compile
 	./$(TARGET)
 
 .PHONY: compile
@@ -22,18 +21,23 @@ compile: $(TARGET)
 	mkdir -p $(EXPORT_DIR)
 
 $(TARGET): $(BUILD_DIR)/main
-	cp $< $@  # copy file BUILD_DIR/main into TARGET
+	# copy file BUILD_DIR/main into TARGET
+	cp $< $@
 
 $(BUILD_DIR)/main: $(OBJECTS)
-	mkdir -p $(@D)  # create folder BUILD_DIR if does not exists
-	$(CXX) $^ -o $@  # compile all OBJECTS files into file BUILD_DIR/main
+	# create folder BUILD_DIR if does not exists
+	mkdir -p $(@D)
+	# compile all OBJECTS files into file BUILD_DIR/main
+	$(CXX) $^ -o $@
 
 $(BUILD_DIR)/%.o: src/%.cpp
-	mkdir -p $(@D) # create folder BUILD_DIR/% if does not exists
-	$(CXX) $(CXXFLAGS) $< -c -o $@ # create object file %.cpp with given flags, output it in BUILD_DIR/%.o
+	# create folder BUILD_DIR/% if does not exists
+	mkdir -p $(@D)
+	# create object file %.cpp with given flags, output it in BUILD_DIR/%.o
+	$(CXX) $(CXXFLAGS) $< -c -o $@
 
 doc: Doxyfile $(HEADERS)
-	doxygen Doxyfile # run command doxygen Doxyfile
+	doxygen Doxyfile
 
 .PHONY: clean
 clean:
