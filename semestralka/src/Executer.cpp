@@ -235,5 +235,5 @@ std::shared_ptr<Matrix> Executer::executeOperations(std::vector<std::string> &el
         auto result = m_utilities.createMatrix(operation->execute());
         return result;
     }
-    throw ExecuterException("There is an error in operations\n");
+    throw ExecuterException("Unknown operation. Try input \"HELP\"\n");
 }

@@ -5,6 +5,7 @@
 #ifndef PA2_OPERATIONEXCEPTION_H
 #define PA2_OPERATIONEXCEPTION_H
 
+
 #include <exception>
 #include <string>
 
