@@ -6,8 +6,8 @@
 #include "Commands.h"
 #include "Exceptions/ParserException.h"
 
-void Parser::parseInput(std::string input) {
-    auto tokens = m_utilities.tokeniseInput(input);
+void Parser::parseInput(const std::string &input) {
+    auto tokens = Utilities::tokeniseInput(input);
 
     if (tokens.empty()) return;
     std::string command = tokens[0];
@@ -21,7 +21,9 @@ void Parser::parseInput(std::string input) {
             throw ParserException("USAGE: print <matrix1, matrix2, ..., matrix_n>\n");
 
         std::vector <std::string> arguments(tokens.begin()+1, tokens.end());
-        checkArgumentsNames(arguments);
+        for (const auto &arg : arguments)
+            if (!Utilities::checkName(arg))
+                throw ParserException("You have entered bad matrix name\n");
         printElements(arguments);
         return;
     } else if (command == Commands::PRINTALL) {
@@ -34,7 +36,9 @@ void Parser::parseInput(std::string input) {
 
         std::string filename = tokens[1];
         std::vector <std::string> arguments(tokens.begin()+2, tokens.end());
-        checkArgumentsNames(arguments);
+        for (const auto &arg : arguments)
+            if (!Utilities::checkName(arg))
+                throw ParserException("You have entered bad matrix name\n");
         exportElements(filename, arguments);
         return;
     } else if (command == Commands::EXPORTALL) {
@@ -51,7 +55,9 @@ void Parser::parseInput(std::string input) {
             throw ParserException("USAGE: del <matrix1, matrix2, ..., matrix_n>\n");
 
         std::vector <std::string> arguments(tokens.begin()+1, tokens.end());
-        checkArgumentsNames(arguments);
+        for (const auto &arg : arguments)
+            if (!Utilities::checkName(arg))
+                throw ParserException("You have entered bad matrix name\n");
         deleteElements(arguments);
         return;
     } else if (command == Commands::DELALL) {
@@ -73,7 +79,7 @@ void Parser::parseInput(std::string input) {
         std::string name = tokens[1];
 
         // check matrix name
-        if (!m_utilities.checkName(name))
+        if (!Utilities::checkName(name))
             throw ParserException("You have entered bad matrix name\n");
 
         scanElements(name);
@@ -84,7 +90,9 @@ void Parser::parseInput(std::string input) {
             throw ParserException("USAGE: det <matrix1, matrix2, ..., matrix_n>\n");
 
         std::vector <std::string> arguments(tokens.begin()+1, tokens.end());
-        checkArgumentsNames(arguments);
+        for (const auto &arg : arguments)
+            if (!Utilities::checkName(arg))
+                throw ParserException("You have entered bad matrix name\n");
         printDet(arguments);
         return;
     } else if (command == Commands::RANK) {
@@ -93,13 +101,15 @@ void Parser::parseInput(std::string input) {
             throw ParserException("USAGE: rank <matrix1, matrix2, ..., matrix_n>\n");
 
         std::vector <std::string> arguments(tokens.begin()+1, tokens.end());
-        checkArgumentsNames(arguments);
+        for (const auto &arg : arguments)
+            if (!Utilities::checkName(arg))
+                throw ParserException("You have entered bad matrix name\n");
         printRank(arguments);
         return;
     } else if (tokens.size() >= 3 and tokens[1] == "=") { // if we have {var = ...}
         std::string name = tokens[0];
 
-        if (!m_utilities.checkName(name))
+        if (!Utilities::checkName(name))
             throw ParserException("You have entered bad matrix name\n");
 
         std::vector <std::string> operations(tokens.begin()+2, tokens.end());
@@ -194,7 +204,7 @@ void Parser::importElements(const std::vector<std::string> &filenames) {
 
 void Parser::scanElements(const std::string &name) {
     m_console.showText("Input size of matrix: ");
-    std::string input = m_utilities.deleteSpaces(m_console.getInput());
+    std::string input = Utilities::deleteSpaces(m_console.getInput());
     size_t numRows, numCols;
     char c;
     std::stringstream ss(input);
@@ -211,37 +221,31 @@ void Parser::scanElements(const std::string &name) {
     for (size_t i = 0; i < numRows; ++i) {
         m_console.showText("Input " + std::to_string(i+1) + " row of matrix: ");
 
-        auto row = m_utilities.tokeniseInput(m_console.getInput());
+        auto row = Utilities::tokeniseInput(m_console.getInput());
         if (row.size() != numCols)
             throw ParserException("One row must have " + std::to_string(numCols) + " elements\n");
 
         for (size_t j = 0; j < numCols; ++j)
             values[i][j] = std::stod(row[j]);
     }
-    auto matrix = m_utilities.createMatrix(values);
+    auto matrix = Utilities::createMatrix(values);
     m_storage.addMatrix(name, matrix);
 }
 
-void Parser::printDet(const std::vector<std::string> &elements) const {
-    for (const auto &elem : elements) {
-        double det = m_storage.getMatrix(elem)->determinant();
+void Parser::printDet(const std::vector<std::string> &arguments) const {
+    for (const auto &arg : arguments) {
+        double det = m_storage.getMatrix(arg)->determinant();
         std::ostringstream ss;
-        ss << "Determinant of matrix " << elem << " is " << det << + "\n";
+        ss << "Determinant of matrix " << arg << " is " << det << + "\n";
         m_console.showText(ss.str());
     }
 }
 
-void Parser::printRank(const std::vector<std::string> &elements) const {
-    for (const auto &elem : elements) {
-        size_t rank = m_storage.getMatrix(elem)->rank();
+void Parser::printRank(const std::vector<std::string> &arguments) const {
+    for (const auto &arg : arguments) {
+        size_t rank = m_storage.getMatrix(arg)->rank();
         std::ostringstream ss;
-        ss << "Rank of matrix " << elem << " is " << rank << "\n";
+        ss << "Rank of matrix " << arg << " is " << rank << "\n";
         m_console.showText(ss.str());
     }
-}
-
-void Parser::checkArgumentsNames(std::vector <std::string> &arguments) const {
-    for (const auto &arg : arguments)
-        if (!m_utilities.checkName(arg))
-            throw ParserException("You have entered bad matrix name\n");
 }

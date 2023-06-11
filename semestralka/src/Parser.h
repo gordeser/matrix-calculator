@@ -16,25 +16,17 @@ class Parser {
     MatrixStorage m_storage;
     /** @var to work with console */
     ConsoleUI m_console;
-    /** @var to use utilities */
-    Utilities m_utilities;
     /** @var to export some text */
     TextExport m_textexport;
     /** @var to execute operations */
     Executer m_executer;
-    /**
-     * Method to validate all arguments names
-     * @param arguments to validate
-     * @throw ParserException if there is bad argument name
-     */
-    void checkArgumentsNames(std::vector <std::string> &arguments) const;
     /** Method that prints help message */
     void printHelp() const;
     /**
      * Method that prints given elements
      * @param elements vector to print
      */
-    void printElements(const std::vector <std::string> &elements) const;
+    void printElements(const std::vector <std::string> &arguments) const;
     /** Method that prints all elements in database */
     void printAllElements() const;
     /**
@@ -42,7 +34,7 @@ class Parser {
      * @param filename in that export elements
      * @param elements vector to export
      */
-    void exportElements(const std::string &filename, const std::vector <std::string> &elements) const;
+    void exportElements(const std::string &filename, const std::vector <std::string> &arguments) const;
     /**
      * Method to export all elements in database into file
      * @param filename in that export elemnts
@@ -52,7 +44,7 @@ class Parser {
      * Method that deletes given elements from database
      * @param elements to delete
      */
-    void deleteElements(const std::vector <std::string> &elements);
+    void deleteElements(const std::vector <std::string> &arguments);
     /**
      * Method that deletes all elements from database
      */
@@ -72,19 +64,19 @@ class Parser {
      * Method that prints determinants of given matrices
      * @param elements vector to print their determinants
      */
-    void printDet(const std::vector <std::string> &elements) const;
+    void printDet(const std::vector <std::string> &arguments) const;
     /**
      * Method that prints ranks of given matrices
      * @param elements vector to print their ranks
      */
-    void printRank(const std::vector <std::string> &elements) const;
+    void printRank(const std::vector <std::string> &arguments) const;
 public:
     /**
      * Method that parses user's input
      * @param input to parse
      * @throw ParserException if commands could not be executed (because of bad input)
      */
-    void parseInput(std::string input);
+    void parseInput(const std::string &input);
 };
 
 #endif //PA2_PARSER_H
