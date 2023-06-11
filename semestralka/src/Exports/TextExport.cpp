@@ -35,7 +35,7 @@ void TextExport::importData(const std::string &filename, MatrixStorage &storage)
         if (!inputFile.good() || inputFile.bad() || inputFile.fail())
             throw ExporterException("Cannot read from the file\n");
 
-        auto tokens = m_utilities.tokeniseInput(input);
+        auto tokens = Utilities::tokeniseInput(input);
         // if there is no one of {name, type, rows, cols}
         if (tokens.size() < 4)
             throw ExporterException("Invalid file's content\n");
@@ -85,7 +85,7 @@ void TextExport::importData(const std::string &filename, MatrixStorage &storage)
                 }
             }
 
-        } else if (type == "i" and values.size() == 0) {
+        } else if (type == "i" and values.empty()) {
             if (numRows != numCols)
                 throw ExporterException("Identical matrix should have equal number of rows and columns\n");
 
@@ -115,7 +115,7 @@ void TextExport::importData(const std::string &filename, MatrixStorage &storage)
         } else
             throw ExporterException("Invalid values of matrix\n");
 
-        auto result = m_utilities.createMatrix(matrix);
+        auto result = Utilities::createMatrix(matrix);
         storage.addMatrix(name, result);
         getline(inputFile, input);
     }

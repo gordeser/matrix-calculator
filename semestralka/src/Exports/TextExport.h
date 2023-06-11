@@ -9,8 +9,6 @@
 #include "../Utilities.h"
 
 class TextExport : public Export {
-    /** @var to contain some useful utilities */
-    Utilities m_utilities;
 public:
     /**
      * Overridden Method that exports matrices to file in text way

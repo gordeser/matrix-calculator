@@ -12,7 +12,7 @@
 class Export {
 public:
     /** Virtual Destructor */
-    virtual ~Export() {}
+    virtual ~Export() = default;
     /**
      * Virtual method that exports matrices to file
      * @param filename to export matrices
