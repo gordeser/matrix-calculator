@@ -17,12 +17,12 @@ public:
      * Constructor
      * @param message describes error
      */
-    StorageException(const std::string &message);
+    explicit StorageException(std::string message);
     /**
      * Method that returns text of error
      * @return c-string that contains text of error
      */
-    virtual const char *what() const noexcept override;
+    const char *what() const noexcept override;
 };
 
 

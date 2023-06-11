@@ -4,7 +4,7 @@
 
 #include "StorageException.h"
 
-StorageException::StorageException(const std::string &message) : m_message(message) {}
+StorageException::StorageException(std::string message) : m_message(std::move(message)) {}
 
 const char *StorageException::what() const noexcept {
     return m_message.c_str();

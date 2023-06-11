@@ -4,7 +4,7 @@
 
 #include "ParserException.h"
 
-ParserException::ParserException(const std::string &message) : m_message(message) {}
+ParserException::ParserException(std::string message) : m_message(std::move(message)) {}
 
 const char *ParserException::what() const noexcept {
     return m_message.c_str();

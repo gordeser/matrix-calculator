@@ -4,7 +4,7 @@
 
 #include "ExecuterException.h"
 
-ExecuterException::ExecuterException(const std::string &message) : m_message(message) { }
+ExecuterException::ExecuterException(std::string message) : m_message(std::move(message)) { }
 
 const char *ExecuterException::what() const noexcept {
     return m_message.c_str();

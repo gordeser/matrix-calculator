@@ -4,7 +4,7 @@
 
 #include "OperationException.h"
 
-OperationException::OperationException(const std::string &message) : m_message(message) {}
+OperationException::OperationException(std::string message) : m_message(std::move(message)) {}
 
 const char *OperationException::what() const noexcept {
     return m_message.c_str();

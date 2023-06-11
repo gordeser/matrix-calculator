@@ -4,7 +4,7 @@
 
 #include "ExporterException.h"
 
-ExporterException::ExporterException(const std::string &message) : m_message(message) {}
+ExporterException::ExporterException(std::string message) : m_message(std::move(message)) {}
 
 const char *ExporterException::what() const noexcept {
     return m_message.c_str();
