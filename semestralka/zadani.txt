@@ -69,7 +69,7 @@ Pro efektivnější práce kalkulačka dokáže rozlišovat mezi dvěma typy mat
 Kromě toho bude uživatel moci pracovat s obsahem matic:
     1. Načtení matice (+ načtení matic ze souboru) (SCAN X / IMPORT filename)
     2. Vymazání matice (+ vymazání všech matic) (DEL X / DELALL)
-    3. Uložení matic do souboru (+ uložení všech matic do souboru) (EXPORT X filename / EXPORTALL filename)
+    3. Uložení matic do souboru (+ uložení všech matic do souboru) (EXPORT filename X / EXPORTALL filename)
     4. Zobrazení matic v konzoli (+ zobrazení všech matic v konzoli) (PRINT X / PRINTALL)
 
 Práce se soubory:
@@ -78,11 +78,11 @@ Práce se soubory:
     3. Soubor se uloží do adresáře "export", který je ve stejném adresáři jako program.
     4. Pro import matici, musí být soubor správně formátován jako v ukázkách.
     5. Pokud je zadán neexistující nebo nesprávně formátovaný soubor, program zobrazí chybové hlášení.
-    6. Pro import matici, soubor musí být v adresáři "import", který je ve stejném adresáři jako program.
+    6. Pro import matici, soubor musí být v adresáři "export", který je ve stejném adresáři jako program.
 
 Komunikace probíhá pomocí konzoly (CLI).
 Funguje to tak, že uživatel zadá příkaz nebo několik příkazů na jednom řádku (např. A = GEM MUL Y ADD Z X)
-Pak třída Parser ty příkazy zpracuje do nějakého pole příkazů. V případě chyby program zpracování výrazu ukončí a uživateli zobrazí chybové hlášení se stručným popisem.
+Pak třída Parser ty příkazy zpracuje. V případě chyby program zpracování výrazu ukončí a uživateli zobrazí chybové hlášení se stručným popisem.
 Uživatel může program ukončit příkazem EXIT nebo QUIT.
 Uživatel může také použít příkaz HELP, který vypíše všechny možné příkazy.
 
@@ -94,12 +94,11 @@ Polymorfismus
 Hlavně polymorfismus se používá u abstraktní třídy Matrix, z níž se dědí třídy SpareMatrix, DenseMatrix a IdentityMatrix.
 Třída Matrix používá virtuální metody:
     1. getVal - pro získání hodnoty matice
-    2. setVal - pro nastavení hodnoty matice
-    3. rank - pro výpočet hodnosti matice
-    4. determinant - pro výpočet determinantu matice
-    5. clone - hluboká kopie matice
-    6. print - výpis matice
-    7. printToFile - vypis matice ve formátu pro uložení do souboru
+    2. rank - pro výpočet hodnosti matice
+    3. determinant - pro výpočet determinantu matice
+    4. clone - hluboká kopie matice
+    5. print - výpis matice
+    6. printToFile - vypis matice ve formátu pro uložení do souboru
 
 
 Také polymorfismus je použit u abstraktní třídy Operation, od které se dědí BinaryOperation a všechny unární operace (např. Transpozice, Inverze atd.)
