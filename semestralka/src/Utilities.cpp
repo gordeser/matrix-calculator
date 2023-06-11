@@ -9,7 +9,7 @@
 #include <algorithm>
 
 
-std::shared_ptr<Matrix> Utilities::createMatrix(const std::vector<std::vector<double>> &elements) const {
+std::shared_ptr<Matrix> Utilities::createMatrix(const std::vector<std::vector<double>> &elements) {
     size_t rows = elements.size();
     size_t cols = elements[0].size();
     bool isIdentity = true;
@@ -48,7 +48,7 @@ std::shared_ptr<Matrix> Utilities::createMatrix(const std::vector<std::vector<do
     return std::make_shared<DenseMatrix>(rows, cols, elements);
 }
 
-std::vector<std::string> Utilities::tokeniseInput(const std::string &input) const {
+std::vector<std::string> Utilities::tokeniseInput(const std::string &input) {
     std::string modified = deleteSpaces(input);
     std::vector <std::string> result;
     std::istringstream iss(modified);
@@ -60,7 +60,7 @@ std::vector<std::string> Utilities::tokeniseInput(const std::string &input) cons
     return result;
 }
 
-std::string Utilities::deleteSpaces(const std::string &str) const {
+std::string Utilities::deleteSpaces(const std::string &str) {
     std::string modified = str;
 
     // delete all spaces before all words
@@ -83,7 +83,7 @@ std::string Utilities::deleteSpaces(const std::string &str) const {
     return modified;
 }
 
-bool Utilities::checkName(const std::string &name) const {
+bool Utilities::checkName(const std::string &name) {
     if (name.empty()) return false;
 
     std::string modified = name;
@@ -104,9 +104,23 @@ bool Utilities::checkName(const std::string &name) const {
     if (std::isdigit(modified[0]))
         return false;
 
-    for (char c : modified)
-        if (!std::isalnum(c))
-            return false;
 
-    return true;
+    return std::all_of(modified.begin(), modified.end(), [](char c) {return std::isalnum(c);});
 }
+
+void Utilities::swapRows(std::vector<std::vector<double>> &matrix, size_t firstRow, size_t secondRow) {
+    if (firstRow != secondRow)
+        std::swap(matrix[firstRow], matrix[secondRow]);
+}
+
+void Utilities::scaleRow(std::vector<std::vector<double>> &matrix, size_t row, double number) {
+    for (double &value : matrix[row])
+        value *= number;
+}
+
+void Utilities::addScaledRow(std::vector<std::vector<double>> &matrix, size_t sourceRow, size_t targetRow, double number) {
+    for (size_t i = 0; i < matrix[targetRow].size(); ++i)
+        matrix[targetRow][i] += number * matrix[sourceRow][i];
+}
+
+

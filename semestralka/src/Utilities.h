@@ -16,27 +16,50 @@ public:
      * @param elements from which matrix will be created
      * @return shared smart-pointer on created matrix
      */
-    std::shared_ptr<Matrix> createMatrix(const std::vector<std::vector <double>> &elements) const;
+    static std::shared_ptr<Matrix> createMatrix(const std::vector<std::vector <double>> &elements);
     /**
      * Method that tokenise given input by space
      * @param input to tokenise
      * @return vector of tokens
      */
-    std::vector <std::string> tokeniseInput(const std::string &input) const;
+    static std::vector <std::string> tokeniseInput(const std::string &input);
     /**
      * Method that deletes unnecessary spaces
      * (more than one space between words and spaces before and after all words)
      * @param str string to modify
      * @return modified string
      */
-    std::string deleteSpaces(const std::string &str) const;
+    static std::string deleteSpaces(const std::string &str);
     /**
      * Method that checks if given name of matrix is allowed
      * (is not one of reserved names and do not contain bad symbols)
      * @param name of matrix
      * @return true if name is allowed, false if name is not allowed
      */
-    bool checkName(const std::string &name) const;
+    static bool checkName(const std::string &name);
+    /**
+     * Method to swap two rows of matrix
+     * @param matrix values of matrix
+     * @param firstRow to swap
+     * @param secondRow to swap
+     */
+    static void swapRows(std::vector<std::vector<double>> &matrix, size_t firstRow, size_t secondRow);
+    /**
+     * Method to scale row by a number
+     * @param matrix values of matrix
+     * @param row to scale
+     * @param number scalar
+     */
+    static void scaleRow(std::vector<std::vector <double>> &matrix, size_t row, double number);
+    /**
+     * Method to scale row and add it's values to another row
+     * @param matrix values of matrix
+     * @param sourceRow to scale it's values
+     * @param targetRow to add scaled values
+     * @param number scalar
+     */
+    static void addScaledRow(std::vector<std::vector <double>> &matrix, size_t sourceRow, size_t targetRow, double number);
+
 };
 
 
