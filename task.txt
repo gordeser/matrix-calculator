@@ -1,0 +1,44 @@
+Matrix Calculator
+
+Task
+
+Your task is to create a calculator for working with matrices.
+
+
+Functional Requirements
+
+The calculator must implement the following features:
+1. Support for matrices of any size.
+2. Basic operations: addition, subtraction, multiplication, and transposition.
+3. Matrix merging (e.g., merging a 3x3 matrix with another 3x3 results in a 6x3 matrix) and cropping (e.g., cropping a 6x6 matrix to 3x3 at offset 0x0 results in the left half of a 3x3 matrix).
+4. Inverse matrix calculation for square matrices.
+5. Determinant computation, rank determination, and Gaussian elimination.
+6. The calculator’s state (its variables) can be saved to a human-readable text file and restored from it.
+7. Efficient memory storage: Matrices must be classified into at least sparse (mostly zero values) and dense (mostly nonzero values) types, ensuring optimal representation and memory efficiency.
+
+
+Expression Processing
+
+The application must process expressions using one of the following approaches:
+    1. Basic operations (at least addition, subtraction, and multiplication) must support nesting via parentheses (e.g., (Z = [[1, 0], [0, 1]] + X) * Y). More complex operations may function as standalone commands (e.g., A = GAUSS X).
+    2. Expressions can be written using prefix or postfix notation, which eliminates the need for parentheses and simplifies parsing. In this case, all operations must be expressible in a single statement (e.g., A = GEM MUL Y ADD [[1, 0], [0, 1]] X).
+
+
+Recommended Use of Polymorphism
+
+1. Matrix representation: Identity, sparse, dense, etc.
+2. Operations: Addition, subtraction, multiplication, etc.
+3. Export formats: Text, binary, etc.
+4. User interface: Console, ncurses, SDL, OpenGL, etc.
+
+
+Example Program Execution
+
+IMPORT memory.matx
+X = DET [[1, 7], [3, 2]]
+SCAN Y
+// input from user …
+Z = X * (Y + [[1, 0], [0, 1]])
+A = GEM Z
+PRINT A
+EXPORT memory.matx
