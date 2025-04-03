@@ -1,78 +1,110 @@
-# Maticová kalkulačka
+# Matrix Calculator
 
-## Specifikace
+## Goals
 
-Úkolem je vytvořit kalkulačku pro práci s maticemi.
+The main goal of the application is to practice working with OOP concepts such as polymorphism, inheritance, and encapsulation. Besides, the project aims to develop practical skills in C++ by working with it's features like Standard Template Library (STL), classes and smart pointers
 
-Maticová kalkulačka obsahuje **binární** operace:
-- Sčítání matice (X = ADD A B)
-- Odečítání matice (X = SUB A B)
-- Násobení skalárem / maticí (X = MUL a A / X = MUL A B)
-- Sloučení matic zprava / zdola (X = JOINRIGHT A B / X = JOINDOWN A B)
-- Oříznutí matic (X = TRIM A row col off_x off_y)
-- Umocňování matic (X = EXP A a)
+## Matrix Operations
 
-A také **unární** operace:
-- Transpozice matice (X = TRANS A)
-- Výpočet inverzní matice (pouze pro čtvercové) (X = INV A)
-- Výpočet determinantu matice (pouze pro čtvercové) (X = DET A)
-- Určení hodnosti matice (X = RANK A)
-- Provedení Gaussovy eliminační metody (X = GEM A)
-
-Pro efektivnější práce kalkulačka dokáže rozlišovat mezi dvěma typy matic:
-- Řídká matice (s převahou nulových prvků (> 50% nul) ) - bude používat efektivnější datový typ - mapa
-- Hustá matice (s převahou nenulových prvků (> 50% nenul) ) - 2D pole
-- Jednotková matice (jedničky na hlavní diagonále)
-
-Kromě toho bude uživatel moci pracovat s obsahem matic:
-- Načtení matice (+ načtení matic ze souboru) (SCAN X / IMPORT filename)
-- Vymazání matice (+ vymazání všech matic) (DEL X / DELALL)
-- Uložení matic do souboru (+ uložení všech matic do souboru) (EXPORT filename X / EXPORTALL filename)
-- Zobrazení matic v konzoli (+ zobrazení všech matic v konzoli) (PRINT X / PRINTALL)
-
-Práce se soubory:
-- Pokud zadaný na výstup soubor neexistuje, bude vytvořen.
-- Pokud zadaný na výstup soubor obsahuje data, budou smazány.
-- Soubor se uloží do adresáře "export", který je ve stejném adresáři jako program.
-- Pro import matici, musí být soubor správně formátován jako v ukázkách.
-- Pokud je zadán neexistující nebo nesprávně formátovaný soubor, program zobrazí chybové hlášení.
-- Pro import matici, soubor musí být v adresáři "export", který je ve stejném adresáři jako program.
-
-Komunikace probíhá pomocí konzoly (CLI).
-Funguje to tak, že uživatel zadá příkaz nebo několik příkazů na jednom řádku (např. A = GEM MUL Y ADD Z X)
-Pak třída Parser ty příkazy zpracuje. V případě chyby program zpracování výrazu ukončí a uživateli zobrazí chybové hlášení se stručným popisem.
-Uživatel může program ukončit příkazem EXIT nebo QUIT.
-Uživatel může také použít příkaz HELP, který vypíše všechny možné příkazy.
-
-Konfigurační třída Commands obsahuje všechny možné příkazy.
+The matrix calculator includes **binary** operations:
+- Matrix addition `X = ADD A B`
+- Matrix subtraction `X = SUB A B`
+- Scalar multiplication `X = MUL a A`
+- Matrix multiplication `X = MUL A B`
+- Matrix merging from the right `X = JOINRIGHT A B`
+- Matrix merging from the below `X = JOINDOWN A B`
+- Matrix trimming `X = TRIM A row col off_x off_y`
+- Matrix exponentiation `X = EXP A a`
 
 
-## Polymorfismus
+And **unary** operations:
+- Matrix transposition `X = TRANS A`
+- Calculation of the inverse matrix (square matrices only) `X = INV A`
+- Determinant calculation (square matrices only) `X = DET A`
+- Rank determination `X = RANK A`
+- Gaussian elimination `X = GEM A`
 
-Hlavně polymorfismus se používá u abstraktní třídy Matrix, z níž se dědí třídy SpareMatrix, DenseMatrix a IdentityMatrix.
-Třída Matrix používá virtuální metody:
-- getVal - pro získání hodnoty matice
-- rank - pro výpočet hodnosti matice
-- determinant - pro výpočet determinantu matice
-- clone - hluboká kopie matice
-- print - výpis matice
-- printToFile - vypis matice ve formátu pro uložení do souboru
+## Types of matrices
+
+For efficiency, the calculator differentiates between three types of matrices:
+- Sparse matrix: 
+    - matrix with a majority of zero elements (>50% zeros)
+    - stored using **map** (more efficient data type)
+- Dense matrix:
+    - matrix with a majority of nonzero elements (>50% nonzeros)
+    - stored as a 2D array
+- Identity matrix
+    - matrix with ones on the main diagonal
+
+## Input/Output Matrix Operations
+
+Additionally, the user can manage matrix data:
+- Input a matrix `SCAN X`
+- Import matrices from a file `IMPORT filename`
+- Delete a matrix `DEL X`
+- Delete all matrices `DELALL`
+- Export matrices to a file `EXPORT filename X`
+- Export all matrices to a file `EXPORTALL filename`
+- Display matrices in the console `PRINT X`
+- Display all matrices in the console `PRINTALL`
 
 
-Také polymorfismus je použit u abstraktní třídy Operation, od které se dědí BinaryOperation a všechny unární operace (např. Transpozice, Inverze atd.)
-Všechny binární operace (Sčítání, Odečítání atd.) budou zděděny z třídy BinaryOperation.
-Třída Operation používá virtuální metodu execute (provedení nějaké operace).
+## File Handling Specifications
+
+- If the specified output file does not exist, it will be created.
+- If the specified output file contains data, it will be erased.
+- The file will be saved in the `export` directory, which is in the same directory as the program.
+- To import a matrix, the file must be located in the `export` directory, which is in the same directory as the program.
+- To import a matrix, the file must be properly formatted as shown in the examples.
+- If an invalid or incorrectly formatted file is provided, the program will display an error message.
 
 
-Kromě toho polymorfismus je použit u abstraktní třídy Export, která se používá pro exportní formáty (textový, binární atd.).
-Prozatím bude export implementován pouze jako textový soubor - zděděná třída TextExport (v budoucnu je možné rozšířit).
-Třída Export používá virtuální metody:
-- exportData pro výstup dat v požadovaném formátu.
-- importData pro načtení dat ze souboru
+## Console Interaction
+
+- The calculator operates via the command-line interface (CLI).
+- The user enters a command or multiple commands in a single line (e.g., `A = GEM MUL Y ADD Z X`).
+- If an error occurs, the program terminates execution of a command and displays an error message with a brief description.
+- The user can exit the program using the `EXIT` or `QUIT` command.
+- The user can use the `HELP` command to display all available commands.
 
 
-Nakonec, polymorfismus je použit u abstraktní třídy UserInterface, která se používá pro různá uživatelská rozhraní.
-Prozatím uživatelské rozhraní bude implementováno pouze v konzoli - zděděná třída ConsoleUI.
-Třída UserInterface používá virtuální metody:
-- showText - zobrazení textu na obrazovce
-- getInput - načtení vstupu
+## Polymorphism
+
+### Matrices
+
+Polymorphism is primarily used in the abstract class `Matrix`, from which the classes `SparseMatrix`, `DenseMatrix`, and `IdentityMatrix` inherit.
+
+The `Matrix` class uses virtual methods:
+- `getVal` – retrieves a matrix value
+- `rank` – computes the rank of a matrix
+- `determinant` – calculates the determinant of a matrix
+- `clone` – performs a deep copy of a matrix
+- `print` – displays the matrix
+- `printToFile` – outputs the matrix in a file-compatible format
+
+
+### Matrix Operations
+
+Polymorphism is also applied in the abstract class `Operation`, from which `BinaryOperation` and all unary operations (e.g., `Transpose`, `Inverse`, etc.) inherit.
+
+All binary operations (`Addition`, `Subtraction`, etc.) inherit from `BinaryOperation`.
+The `Operation` class uses the virtual method execute to perform operations.
+
+### File Handling
+
+Additionally, polymorphism is used in the abstract class `Export`, which is responsible for export/import formats (text, binary, etc.).
+For now, export is implemented only as a text file via the `TextExport` subclass, but future expansion is possible.
+
+The `Export` class uses virtual methods:
+- `exportData` – outputs data in the required format
+- `importData` – loads data from a file
+
+### User Interfaces
+
+Finally, polymorphism is applied in the abstract class `UserInterface`, which supports different user interfaces.
+Currently, the user interface is implemented only as a console interface via the `ConsoleUI` subclass, but future expansion is also possible
+
+The `UserInterface` class uses virtual methods:
+- `showText` – displays text on the screen
+- `getInput` – receives user input
+
